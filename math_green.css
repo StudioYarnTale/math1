@@ -391,13 +391,3 @@ font-weight:bold;
 color:#112211;
 display:none;
 }
-
-button sup {
-    font-size: 0.55em;
-    position: relative;
-    top: -0.3em;
-}
-button sup {
-    font-size: 0.6em;
-    vertical-align: super;
-}
