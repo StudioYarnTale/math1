@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scales YT Maths Playground © OliSoft 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="math_green1.css">
+    <link rel="icon" type="image/png" href="images/ytmath_icon.png">
+
+    <style>
+        .container {
+            position: relative;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            background: #ffffff;
+        }
+
+        .scales {
+            position: relative;
+            height: 600px;
+            width: 1186px;
+            transform: scale(0.8);
+            transform-origin: top center;
+        }
+
+        .base, .left_spring, .right_spring, .left, .right { position: absolute; }
+        .base { top: 500px; left: 0px; width: 1186px; }
+        .left_spring { top: 360px; left: 184px; width: 208px; transform-origin: bottom; }
+        .right_spring { top: 360px; left: 804px; width: 208px; transform-origin: bottom; }
+        .left { top: 182px; left: 93px; width: 497px; }
+        .right { top: 182px; left: 605px; width: 497px; }
+
+        .fruit1, .fruit2, .fruit3 {
+            display: grid;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .fruit1 { grid-template-columns: repeat(11, 70px); }
+        .fruit2 { grid-template-columns: repeat(5, 70px); }
+        .fruit3 { grid-template-columns: repeat(7, 70px); }
+
+        .letter { font-size: 24px; font-weight: bold; color: #8b4513; text-align: center; width: 70px; display: inline-block; }
+        .digit { cursor: pointer; transition: transform 0.15s; width: 70px; }
+        .digit:hover { transform: scale(1.1); }
+
+		
+		.panContent {
+        position: absolute;
+        display: flex;
+        /* Предметы будут плотно стоять в ряд по центру чаши */
+        justify-content: center; 
+        align-items: flex-end;
+        gap: 1px;
+        /* Ограничиваем ширину, чтобы не выезжать за края чаши */
+        width: 400px; 
+        height: 80px;
+        /* Плавный переход для движения вместе с чашей */
+        transition: transform 0.4s ease;
+		}
+	
+	
+
+	.leftPan { left: 110px; top: 210px;}
+    .rightPan { left: 720px; top: 210px; }
+	
+    /* Размер предметов на весах */        
+    .item { width: 55px; height: 55px; object-fit: contain; cursor: pointer; transition: transform 0.2s;}
+    .item:hover { transform: scale(1.2) translateY(-5px); }
+	
+	
+
+		
+        .left, .right, .left_spring, .right_spring, .leftPan, .rightPan { transition: transform 0.4s ease; }
+
+        .indicator { position: absolute; top: 60px; left: 560px; width: 70px; height: 70px; }
+        .indicator img { width: 100%; transition: transform 0.3s; }
+        
+
+		
+		#mathExpression {
+			font-family: "Comic Sans MS", "Comic Neue", cursive, sans-serif;
+			font-size: 32px; 
+			font-weight: bold;
+			padding: 15px 30px; 
+			width: 800px; /* Увеличили ширину, чтобы влезло длинное выражение */
+			text-align: center;
+			border-radius: 60px; /* Красивое овальное скругление */
+			border: 4px solid #4CAF50; /* Сделаем рамку чуть толще */
+			background: #fdfdfd; 
+			color: #006633; /* Темно-зеленый цвет для цифр */
+			box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Добавим легкую тень для объема */
+			outline: none;
+			letter-spacing: 2px; /* Расстояние между символами, чтобы не слипались */
+		}
+
+
+/* Увеличим шрифт подписей, как ты просила ранее */
+    .sideSelect {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        color: #4CAF50;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+	
+	.sideSelect label {cursor: pointer;}
+    .sideSelect input[type="radio"] {width: 25px; height: 25px; cursor: pointer;}
+
+    /* Настройка контейнера на весах для 7 предметов в ряд */
+    .panContent {
+        position: absolute;
+        display: flex; /* Используем flex для выстраивания в одну линию */
+        justify-content: center;
+        align-items: flex-end;
+        gap: 1px; /* Твое пожелание по отступу */
+        width: 360px; /* Ширина под 7 предметов по 60px */
+        height: 80px;
+        /*background:#ff0000;*/
+    }
+    
+
+
+
+
+
+    #mathExpression {font-family: "Comic Sans MS", sans-serif; font-size: 32px;}
+    
+    .letter{font-family: "Comic Sans MS", sans-serif; font-size: 36px; }
+</style>
+	
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="scales">
+        <div class="indicator"><img id="balanceIcon" src="images/app_scales/digit/eq.png"></div>
+        <div class="base"><img src="images/app_scales/base.png"></div>
+        <div class="left_spring"><img src="images/app_scales/left_spring.png"></div>
+        <div class="right_spring"><img src="images/app_scales/right_spring.png"></div>
+        <div class="left"><img src="images/app_scales/left.png"></div>
+        <div class="right"><img src="images/app_scales/right.png"></div>
+        <div class="panContent leftPan"></div>
+        <div class="panContent rightPan"></div>
+    </div>
+
+    <div style="margin: 20px;">
+        <input type="text" id="mathExpression" readonly value="0 = 0">
+    </div>
+
+    <div class="sideSelect">
+        <label><input type="radio" name="side" value="left" checked> Left Pan</label>
+        <label><input type="radio" name="side" value="right"> Right Pan</label>
+        <button onclick="clearAll()" style="margin-left: 20px; padding: 8px 20px; border-radius: 15px; cursor: pointer; background: #ff7b7b; color: white; border: none; font-weight: bold;">Clear All</button>
+    </div>
+
+    <div class="fruit1">
+        <img class="digit" onclick="addItem('b0.png')" src="images/app_scales/digit/b0.png">
+        <img class="digit" onclick="addItem('b1.png')" src="images/app_scales/digit/b1.png">
+        <img class="digit" onclick="addItem('b2.png')" src="images/app_scales/digit/b2.png">
+        <img class="digit" onclick="addItem('b3.png')" src="images/app_scales/digit/b3.png">
+        <img class="digit" onclick="addItem('b4.png')" src="images/app_scales/digit/b4.png">
+        <img class="digit" onclick="addItem('b5.png')" src="images/app_scales/digit/b5.png">
+        <img class="digit" onclick="addItem('b6.png')" src="images/app_scales/digit/b6.png">
+        <img class="digit" onclick="addItem('b7.png')" src="images/app_scales/digit/b7.png">
+        <img class="digit" onclick="addItem('b8.png')" src="images/app_scales/digit/b8.png">
+        <img class="digit" onclick="addItem('b9.png')" src="images/app_scales/digit/b9.png">
+        <img class="digit" onclick="addItem('b10.png')" src="images/app_scales/digit/b10.png">
+    </div>
+
+    <div class="fruit2">
+        <img class="digit" onclick="addItem('f0.png')" src="images/app_scales/digit/f0.png">
+        <img class="digit" onclick="addItem('f1.png')" src="images/app_scales/digit/f1.png">
+        <img class="digit" onclick="addItem('f2.png')" src="images/app_scales/digit/f2.png">
+        <img class="digit" onclick="addItem('f3.png')" src="images/app_scales/digit/f3.png">
+        <img class="digit" onclick="addItem('wx.png')" src="images/app_scales/digit/wx.png">
+    </div>
+    <div class="fruit2">
+        <span class="letter">a</span><span class="letter">b</span><span class="letter">c</span><span class="letter">d</span><span class="letter">x</span>
+    </div>
+</div>
+
+<script>
+    // База данных предметов
+    const itemMap = {
+        'f0.png': 'a', 'f1.png': 'b', 'f2.png': 'c', 'f3.png': 'd', 'wx.png': 'x',
+        'b0.png': '0', 'b1.png': '1', 'b2.png': '2', 'b3.png': '3', 'b4.png': '4',
+        'b5.png': '5', 'b6.png': '6', 'b7.png': '7', 'b8.png': '8', 'b9.png': '9', 'b10.png': '10'
+    };
+    // Храним предметы как массивы символов
+    let leftItems = [];
+    let rightItems = [];
+    const weightValues = { 'a': 5, 'b': 3, 'c': 4, 'd': 2, 'x': 10 };
+	const currentSide = document.querySelector('input[name="side"]:checked').value;
+    const inputField = document.getElementById('mathExpression');
+    const leftPan = document.querySelector(".leftPan");
+    const rightPan = document.querySelector(".rightPan");
+
+
+
+
+    function addItem(fileName) {
+        const symbol = itemMap[fileName];
+        const currentSide = document.querySelector('input[name="side"]:checked').value;
+
+
+
+	if (currentSide === 'left') {
+        // Ограничиваем до 7 предметов
+        if (leftItems.length < 7) {
+            leftItems.push(symbol);
+        } else {
+            alert("На чаше помещается только 7 предметов!"); // Можно убрать или заменить на звук
+        }
+    } else {
+        if (rightItems.length < 7) {
+            rightItems.push(symbol);
+        } else {
+            alert("На чаше помещается только 7 предметов!");
+        }
+    }
+    updateAll();
+    }
+
+
+
+
+    function removeItem(side, index) {
+        if (side === 'left') {
+            leftItems.splice(index, 1);
+        } else {
+            rightItems.splice(index, 1);
+        }
+        updateAll();
+    }
+	
+	
+
+    function clearAll() {
+        leftItems = [];
+        rightItems = [];
+        updateAll();
+    }
+	
+	
+
+    function updateAll() {
+        renderPan(leftPan, leftItems, 'left');
+        renderPan(rightPan, rightItems, 'right');
+        
+        const leftW = calculateWeight(leftItems);
+        const rightW = calculateWeight(rightItems);
+        
+        updateInputBox(leftItems, rightItems, leftW, rightW);
+        tiltScales(leftW - rightW);
+        updateBalanceIcon(leftW, rightW);
+    }
+	
+	
+	
+
+    function renderPan(pan, items, side) {
+        pan.innerHTML = '';
+        items.forEach((symbol, index) => {
+            const fileName = Object.keys(itemMap).find(key => itemMap[key] === symbol);
+            if (fileName) {
+                const img = document.createElement("img");
+                img.className = "item";
+                img.src = `images/app_scales/digit/${fileName}`;
+                img.onclick = () => removeItem(side, index);
+                pan.appendChild(img);
+            }
+        });
+    }
+
+
+
+    function calculateWeight(items) {
+        return items.reduce((sum, s) => {
+            if (!isNaN(s)) return sum + parseInt(s);
+            return sum + (weightValues[s] || 0);
+        }, 0);
+    }
+
+
+
+    function updateInputBox(lItems, rItems, lW, rW) {
+        const buildPart = (items) => {
+            let letters = items.filter(s => isNaN(s));
+            let numSum = items.filter(s => !isNaN(s)).reduce((a, b) => a + parseInt(b), 0);
+            let parts = [...letters];
+            if (numSum > 0) parts.push(numSum);
+            return parts.length > 0 ? parts.join('+') : "0";
+        };
+        let sign = " = ";
+        if (lW > rW) sign = " > ";
+        if (lW < rW) sign = " < ";
+        inputField.value = `${buildPart(lItems)}${sign}${buildPart(rItems)}`;
+    }
+
+
+
+    function updateBalanceIcon(lW, rW) {
+        const icon = document.getElementById("balanceIcon");
+        if (lW === rW) icon.src = "images/app_scales/digit/eq.png";
+        else if (lW > rW) icon.src = "images/app_scales/digit/gt.png";
+        else icon.src = "images/app_scales/digit/lt.png";
+    }
+
+
+
+    function tiltScales(diff) {
+        const maxOffset = 60;
+        let offset = Math.max(-maxOffset, Math.min(maxOffset, diff * 4));
+        document.querySelector(".left").style.transform = `translateY(${offset}px)`;
+        document.querySelector(".leftPan").style.transform = `translateY(${offset}px)`;
+        document.querySelector(".right").style.transform = `translateY(${-offset}px)`;
+        document.querySelector(".rightPan").style.transform = `translateY(${-offset}px)`;
+        // Пружины: тянутся вслед за чашами
+        document.querySelector(".left_spring").style.transform = `scaleY(${1 - offset / 160})`;
+        document.querySelector(".right_spring").style.transform = `scaleY(${1 + offset / 160})`;
+    }
+
+
+
+
+// 1. Делаем поле доступным для ввода
+inputField.removeAttribute('readonly');
+inputField.style.cursor = "text";
+
+// 2. Функция, которая "читает" текст и расставляет предметы
+function syncScalesFromInput() {
+    const text = inputField.value;
+    
+    // Разбиваем текст на левую и правую части по знакам =, < или >
+    const sides = text.split(/[=<>]/);
+    
+    if (sides.length >= 1) {
+        leftItems = parseInputToItems(sides[0]);
+    }
+    if (sides.length >= 2) {
+        rightItems = parseInputToItems(sides[1]);
+    } else if (!text.includes('=') && !text.includes('<') && !text.includes('>')) {
+        // Если знака еще нет, считаем, что всё введенное — левая чаша
+        rightItems = [];
+    }
+
+    // Ограничиваем визуальное количество (7 предметов), как мы договаривались
+    leftItems = leftItems.slice(0, 7);
+    rightItems = rightItems.slice(0, 7);
+
+    // Обновляем визуальную часть (чаши, вес, пружины)
+    // ВАЖНО: вызываем отрисовку БЕЗ перезаписи самого inputField, чтобы не мешать печатать
+    renderPan(leftPan, leftItems, 'left');
+    renderPan(rightPan, rightItems, 'right');
+    
+    const leftW = calculateWeight(leftItems);
+    const rightW = calculateWeight(rightItems);
+    
+    tiltScales(leftW - rightW);
+    updateBalanceIcon(leftW, rightW);
+}
+
+// Помощник: превращает строку "a+b+10" в массив ['a', 'b', '10']
+function parseInputToItems(str) {
+    if (!str) return [];
+    // Ищем наши токены: 10, цифры 0-9 или буквы a, b, c, d, x
+    // Мы игнорируем знаки +, так как предметы на весах — это просто набор сущностей
+    const tokens = str.match(/10|[0-9]|[abcdx]/g) || [];
+    return tokens;
+}
+
+// 3. Вешаем "слушателя" на ввод текста
+inputField.addEventListener('input', syncScalesFromInput);
+
+// Также добавим фокус: если ребенок кликнул в бокс, текст "0 = 0" можно стирать
+inputField.addEventListener('focus', function() {
+    if (this.value === "0 = 0") this.value = "";
+});
+
+// Если поле осталось пустым после выхода — возвращаем 0 = 0
+inputField.addEventListener('blur', function() {
+    if (this.value.trim() === "") {
+        this.value = "0 = 0";
+        updateAll();
+    }
+});
+
+
+
+    // Инициализация
+    updateAll();
+	
+	
+	
+	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Contact</title>
+
+<link rel="stylesheet" href="math_green.css">
+
+<style>
+.slider{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+margin:40px;
+}
+
+.slider img{
+max-width:600px;
+max-height:500px;
+border-radius:8px;
+}
+
+.slider button{
+font-size:22px;
+padding:6px 14px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<link rel="stylesheet" href="math_green.css">
+
+<div class="slider">
+
+<button onclick="prevImage()">◀</button>
+
+<img id="slideImage" src="images/img1.jpg">
+
+<button onclick="nextImage()">▶</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+<script>
+
+let index = 1
+let total = 12   // сколько картинок в папке
+
+const img = document.getElementById("slideImage")
+
+function showImage(){
+img.src = "images/img" + index + ".jpg"
+}
+
+function nextImage(){
+
+index++
+
+if(index > total){
+index = 1
+}
+
+showImage()
+}
+
+function prevImage(){
+
+index--
+
+if(index < 1){
+index = total
+}
+
+showImage()
+}
+
+</script>
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YT Maths Playground  © OliSoft 2026 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive mathematical playground: calculator, function grapher, geometry tools.">
+<meta name="author" content="OliSoft">
+<!-- main theme -->
+<link rel="stylesheet" href="math.css">
+<!-- favicon -->
+<link rel="icon" type="image/png" href="images/ytmath_icon.png">
+<style>
+/* ===== общий layout ===== */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9fdfd;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        .title {
+            color: #78AFAC;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .main-wrapper {
+            background: #ffffff;
+            border: 1px solid #78AFAC;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(120, 175, 172, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+/* Общий контейнер */
+.links-box {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    background: #f5f7f7;
+    border-radius: 20px;
+    border: 2px solid #8bb8b5;
+    text-align: center;
+}
+/* Заголовок */
+.links-title {
+    font-size: 38px;
+    color: #6da8a4;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+/* Группа ссылок */
+.link-group {
+    margin: 25px 0;
+}
+/* Ссылки-кнопки */
+.link-button {
+    display: block;
+    margin: 8px auto;
+    padding: 10px 20px;
+    width: 260px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 2px solid #c7dede;
+    text-decoration: none;
+    font-size: 18px;
+    color: #5b2ea5;
+    transition: all 0.2s ease;
+}
+/* Hover эффект */
+.link-button:hover {
+    background: #e6f3f2;
+    border-color: #6da8a4;
+    color: #3b1c7a;
+    transform: scale(1.03);
+}
+
+<style>
+.links-panel {
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+}
+.link-group {
+    margin-bottom: 35px;
+}
+.group-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #6da8a4;
+    margin-bottom: 12px;
+}
+.link-button {
+    display: block;
+    margin: 6px auto;
+    padding: 10px 18px;
+    width: 280px;
+    background: #ffffff;
+    border: 2px solid #c7dede;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #4b2a91;
+    transition: all 0.2s ease;
+}
+.link-button:hover {
+    background: #e6f3f2;
+    border-color: #6da8a4;
+    transform: scale(1.04);
+}
+</style>
+</head>
+<body>
+
+<div class="title">🧮 YarnTale Math Playground</div>
+<div class="main-wrapper">
+<div class="container links-panel">
+<!-- Math tools -->
+<div class="link-group">
+<div class="group-title">🧮 Math Tools</div>
+<a class="link-button" href="math_ru.html" target="_blank">📖 Math Story</a>
+<a class="link-button" href="calculator.html" target="_blank">➕ Calculator</a>
+<a class="link-button" href="kidscalc.html" target="_blank">🧸 Kids Calculator</a>
+<a class="link-button" href="abacus_centered.html" target="_blank">🧮 Abacus</a>
+<a class="link-button" href="scales.html" target="_blank">🍎 Fruit Scales</a>
+<a class="link-button" href="equation.html" target="_blank">📐 Equation</a>
+<a class="link-button" href="function.html" target="_blank">📈 Function</a>
+<a class="link-button" href="graph.html" target="_blank">📊 Grapher</a>
+<a class="link-button" href="canvas.html" target="_blank">🎨 Canvas</a>
+<a class="link-button" href="analytic.html" target="_blank">🔍 Function Analysis</a>
+<a class="link-button" href="match.html" target="_blank">🧩 Match Quiz</a>
+<a class="link-button" href="quiz.html" target="_blank">❓ Quiz</a>
+<a class="link-button" href="contact.html" target="_blank">📬 Contact</a>
+<a class="link-button" href="slider.html" target="_blank">🖼 Picture Slider</a>
+</div>
+
+<!-- Main sites -->
+<div class="link-group">
+<div class="group-title">🌍 Main Sites</div>
+<a class="link-button" href="https://StudioYarnTale.github.io/yt/" target="_blank">📖 YarnTale</a>
+<a class="link-button" href="https://yarntale.my1.ru/index.html" target="_blank">🌐 YarnTale uCoz</a>
+<a class="link-button" href="https://yarntale.wixsite.com/home" target="_blank">🧱 YarnTale Wix</a>
+</div>
+
+<!-- Crochet & Math -->
+<div class="link-group">
+<div class="group-title">🧶 Projects</div>
+<a class="link-button" href="https://studioyarntale.github.io/math/" target="_blank"> 🧮 Math GitHub</a>
+<a class="link-button" href="https://studioyarntale.github.io/crochet/" target="_blank">🧶 Crochet</a>
+<a class="link-button" href="https://yarntale.my1.ru/crochet/index.html" target="_blank">🧶 Crochet uCoz</a>
+<a class="link-button" href="https://yarntale.my1.ru/math/index.html" target="_blank">🧮 Math uCoz</a>
+</div>
+
+<!-- Admin tools -->
+<div class="link-group">
+<div class="group-title">⚙ Admin Tools</div>
+<a class="link-button" href="https://github.com/dashboard" target="_blank">🐙 GitHub Dashboard</a>
+<a class="link-button" href="https://yarntale.my1.ru/panel/?a=fm" target="_blank">📁 uCoz File Manager</a>
+<a class="link-button" href="https://yarntale.my1.ru/panel/?a=tmpl&m=2&t=0" target="_blank">🧾 uCoz HTML Editor</a>
+<a class="link-button" href="https://editor.wix.com/" target="_blank">🧱 Wix Editor</a>
+</div>
+</div><!-- container -->
+</div><!-- main-wrapper -->
+
+
+<div class="olisoft-footer">2026 © OliSoft - YarnTale Math Playground. All rights reserved.</div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<meta charset="UTF-8">
+<title>Kid's Calculator - YT Math Playground  © OliSoft 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive mathematical playground: calculator, function grapher, geometry tools.">
+<meta name="author" content="OliSoft">
+<!-- main theme -->
+<link rel="stylesheet" href="math_green.css">
+<!-- favicon -->
+<link rel="icon" type="image/png" href="images/ytmath_icon.png">
+
+
+<style>
+
+.calc-panel{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	margin-bottom:5px;
+}
+
+.kids_calc_wrapper {
+    width: 320px;
+	max-height:600px;
+	margin: auto;
+	padding: 25px;
+	position:relative;
+	background:#B1D1D2;
+	border: 1px solid #668585;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+	text-align:center;
+	color:#5D7B7E;
+	font-family: comic sans serif; cambria;
+}
+
+.kids-grid {
+	width:320px; height:340px;
+	margin:40px 0px 0px 0px;
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    gap: 10px;
+    justify-content:center;
+}
+
+.kids-display {
+	width:235px; height:40px;
+	margin:10px auto 20 auto;
+padding:15px;
+background:#FFF8E7;
+border:1px solid #666666;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+border-radius:8px;
+font-size:30px;
+font-weight:bold;
+	color:#112211;	color:#5D7B7E;
+	text-align:center;
+	font-family: 'Comic sans MS' cambria;
+}
+
+
+.kids_calc_wrapper h2{
+	color:#5D7B7E;
+	font-style:italic;
+	font-weight:600;
+	margin:0;
+	display:flex;
+	align-items:center;
+	gap:10px;
+}
+
+.kids-grid button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.kids-grid button:active {
+    transform: scale(0.9); /* Эффект нажатия */
+}
+
+.kids-grid button img {
+    width: 60px; /* Твой размер */
+    height: 60px;
+    display: block;
+}
+
+
+.olisoft{
+	margin-top:20px;
+	font-size:14px;
+	color:#5D7B7E;
+	font-style:italic;
+}
+
+.calc-close{
+	position:absolute;
+	top:8px;
+	right:10px;
+	border:none;
+	background:none;
+	font-size:22px;
+	font-weight:bold;
+	color:#5D7B7E;
+	cursor:pointer;
+}
+
+.calc-close:hover{color:#334444; transform:scale(1.2);}
+
+
+</style>
+</head>
+<body>
+
+
+
+
+
+
+<div class="calc-panel">
+<div class="kids_calc_wrapper">
+
+<button class="calc-close" onclick="closeCalc()">✕</button>
+<br/>
+
+    <input type="text" id="calcInput" class="kids-display">
+    <div id="calcResult" class="kids-result"></div>
+
+<div class="kids-grid">
+	<button onclick="percentCalc()"><img src="images/kids/btn_1.png" alt="%"/></button>
+    <button onclick="negateCalc()"><img src="images/kids/btn_2.png" alt="/-/"/></button>
+    <button onclick="sqrtCalc()"><img src="images/kids/btn_3.png" alt="sqrt"/></button>
+	<button onclick="insertFunc('/')"><img src="images/kids/btn_7.png" alt="/"/></button>
+	
+	<button onclick="insertFunc('1')"><img src="images/kids/btn1.png" alt="1"/></button>
+    <button onclick="insertFunc('2')"><img src="images/kids/btn2.png" alt="2"/></button>
+    <button onclick="insertFunc('3')"><img src="images/kids/btn3.png" alt="3"/></button>
+	<button onclick="insertFunc('*')"><img src="images/kids/btn_6.png" alt="*"/></button>
+	
+    <button onclick="insertFunc('4')"><img src="images/kids/btn4.png" alt="4"/></button>
+    <button onclick="insertFunc('5')"><img src="images/kids/btn5.png" alt="5"/></button>
+    <button onclick="insertFunc('6')"><img src="images/kids/btn6.png" alt="6"/></button>
+	<button onclick="insertFunc('-')"><img src="images/kids/btn_5.png" alt="-"/></button>
+	
+    <button onclick="insertFunc('7')"><img src="images/kids/btn7.png" alt="7"/></button>
+    <button onclick="insertFunc('8')"><img src="images/kids/btn8.png" alt="8"/></button>
+    <button onclick="insertFunc('9')"><img src="images/kids/btn9.png" alt="9"/></button>
+	<button onclick="insertFunc('+')"><img src="images/kids/btn_4.png" alt="+"/></button>
+	
+    <button onclick="insertFunc('0')"><img src="images/kids/btn0.png" alt="0"/></button>
+    <button onclick="insertFunc('.')"><img src="images/kids/btn_.png" alt="."/></button>
+    <button onclick="insertFunc('(')"><img src="images/kids/btn_b1.png" alt="("/></button>
+    <button onclick="insertFunc(')')"><img src="images/kids/btn_b2.png" alt="=")></button>	
+</div>	
+
+
+<div class="kids-grid" style="grid-template-columns: repeat(2, auto); gap:2px; height:60px; margin-top:10px;">
+	<button onclick="clearCalc()"><img src="images/kids/btn_9.png" alt="Clear" style="width:60px; height:60px; display: block; margin:0px;"/></button>
+	<button onclick="calculate()"><img src="images/kids/btn_20.png" alt="=" style="width:200px; height:60px; margin:0px; display: block; "/></button>	
+</div>
+<p class="olisoft">2026  © OliSoft - YarnTale Math Playground.<br/>All rights reserved.</p>
+
+
+</div>
+
+
+</div>
+<script src="script/kidscalc.js"></script>
+</body>
+</html>
