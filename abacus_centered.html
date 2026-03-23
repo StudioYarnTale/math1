@@ -530,8 +530,8 @@ height:5px;
 .beads-layer{
 position:absolute;
 top:47px;
-left:-45px;
-width:700px;
+left:-47px;
+width:695px;
 height:370px;
 display:flex;
 flex-direction:column;
@@ -544,7 +544,7 @@ padding:3px;
 
 <body>
 
-    <div class="abacus-title">
+    <div class="abacus-title"><img src="images/ytmath_logo.png" style="width:90px; margin-bottom:-30px; margin-top:-50px; margin-right:0px;"/>
         YarnTale Math Playground: <span style="color: #5a8d8a;">Interactive Abacus</span>
     </div>
 
@@ -769,24 +769,36 @@ left.appendChild(right.firstChild)
 })
 
 rows.forEach(row=>{
-
 const place = parseFloat(row.dataset.place)
-
 const right = row.querySelector(".right")
 const left = row.querySelector(".left")
-
 const digit = Math.floor(value/place)%10
-
 for(let i=0;i<digit;i++){
 const bead = left.lastElementChild
 if(bead) right.appendChild(bead)
 }
-
 })
-
 updateNumber()
-
 }
+
+
+
+
+function resetAll(){
+const rows = document.querySelectorAll(".row")
+rows.forEach(row => {
+    const left = row.querySelector(".left")
+    const right = row.querySelector(".right")
+    // переносим все косточки обратно влево
+    while(right.firstChild){
+        left.appendChild(right.firstChild)
+    }
+})
+// обновляем число
+updateNumber()
+}
+
+
 
 </script>
 </body>
