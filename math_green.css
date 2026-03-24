@@ -402,3 +402,37 @@ button sup {
     font-size: 0.6em;
     vertical-align: super;
 }
+
+/* ===== TOP HORIZONTAL MENU ===== */
+
+.link-grouph{
+display:flex;
+width:900px;
+/*flex-wrap:wrap;*/
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-top:0px;
+margin-bottom:0px;
+}
+
+.link-buttonh{
+display:inline-block;
+width:auto;
+padding:5px 15px;
+background:#e6f3f2;
+border:1px solid #78AFAC;
+border-radius:22px;
+text-decoration:none;
+font-size:16px;
+color:#338877;
+transition:all 0.2s ease;
+}
+
+/* Hover */
+.link-buttonh:hover{
+background:#d4ecea;
+border-color:#5a8d8a;
+transform:translateY(-2px);
+color:#006633;
+}
