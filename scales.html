@@ -8,14 +8,93 @@
     <link rel="icon" type="image/png" href="images/ytmath_icon.png">
 
     <style>
+
+* ===== BODY ===== */
+
+body{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+min-height:100vh;
+margin:0;
+padding:10px;
+background:#f9fdfd;
+font-family:"Comic Sans MS", cursive;
+padding:0px 10px 10px 10px;
+
+}
+
+
+/* ===== HEADER ===== */
+
+.main-title{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:0px;
+font-size:34px;
+font-weight:bold;
+color:#78AFAC;
+margin-top:10px;
+margin-bottom:10px;
+margin:10px;
+text-align:center;
+font-family:"Comic Sans MS", cursive;
+}
+
+.main-title img{width:90px; margin:0px; margin-top:-10px;}
+
+/* ===== MAIN FRAME ===== */
+
+
+.main-wrapper{
+max-width:1000px;
+width:100%;
+margin-left:auto;
+margin-right:auto;
+margin-top:-10px;
+background:#ffffff;
+border:1px solid #78AFAC;
+border-radius:25px;
+padding:30px;
+box-shadow:0 10px 30px rgba(120,175,172,0.15);
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* ===== INNER CONTENT AREA ===== */
+.content-area{
+width:950px;
+display:flex;
+justify-content:center;
+align-items:center;
+width:950px;
+background: #ffffff;
+}
+
+/* ===== FOOTER ===== */
+.olisoft-footer{
+margin-top:25px;
+margin-bottom:-15px;
+font-size:12px;
+color:#78AFAC;
+font-family: Cambria;
+font-style: italic;
+}
+
+
+
         .container {
             position: relative;
-            font-family: Arial, sans-serif;
+            font-family: "Comic Sans MS", Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            width:950px;
             background: #ffffff;
+
         }
 
         .scales {
@@ -39,31 +118,32 @@
             justify-content: center;
             margin-top: 10px;
         }
+
         .fruit1 { grid-template-columns: repeat(11, 70px); }
         .fruit2 { grid-template-columns: repeat(5, 70px); }
         .fruit3 { grid-template-columns: repeat(7, 70px); }
 
-        .letter { font-size: 24px; font-weight: bold; color: #8b4513; text-align: center; width: 70px; display: inline-block; }
+        .letter { font-size: 36px; font-weight: bold; color: #8b4513; text-align: center; width: 70px; display: inline-block; }
+        #.letter{font-family: "Comic Sans MS", sans-serif;  }
+
         .digit { cursor: pointer; transition: transform 0.15s; width: 70px; }
         .digit:hover { transform: scale(1.1); }
 
-		
-		.panContent {
-        position: absolute;
-        display: flex;
-        /* Предметы будут плотно стоять в ряд по центру чаши */
-        justify-content: center; 
-        align-items: flex-end;
-        gap: 1px;
-        /* Ограничиваем ширину, чтобы не выезжать за края чаши */
-        width: 400px; 
-        height: 80px;
-        /* Плавный переход для движения вместе с чашей */
-        transition: transform 0.4s ease;
-		}
-	
-	
 
+	/* Настройка контейнера на весах для 7 предметов в ряд */
+    .panContent {
+        position: absolute;
+        display: flex; /* Используем flex для выстраивания в одну линию */
+        justify-content: center; /* Предметы будут плотно стоять в ряд по центру чаши */
+        align-items: flex-end;
+        gap: 1px; /* Твое пожелание по отступу */
+        width: 360px; /* Ширина под 7 предметов по 50px Ограничиваем ширину, чтобы не выезжать за края чаши*/
+        height: 80px;
+        transition: transform 0.4s ease; /* Плавный переход для движения вместе с чашей */ 
+        /*background:#ff0000;*/
+	}
+	
+	
 	.leftPan { left: 110px; top: 210px;}
     .rightPan { left: 720px; top: 210px; }
 	
@@ -71,25 +151,22 @@
     .item { width: 55px; height: 55px; object-fit: contain; cursor: pointer; transition: transform 0.2s;}
     .item:hover { transform: scale(1.2) translateY(-5px); }
 	
-	
+	.left, .right, .left_spring, .right_spring, .leftPan, .rightPan { transition: transform 0.4s ease; }
 
-		
-        .left, .right, .left_spring, .right_spring, .leftPan, .rightPan { transition: transform 0.4s ease; }
-
-        .indicator { position: absolute; top: 60px; left: 560px; width: 70px; height: 70px; }
-        .indicator img { width: 100%; transition: transform 0.3s; }
+   .indicator { position: absolute; top: 60px; left: 560px; width: 70px; height: 70px; }
+   .indicator img { width: 100%; transition: transform 0.3s; }
         
-
-		
-		#mathExpression {
+	#mathExpression {
 			font-family: "Comic Sans MS", "Comic Neue", cursive, sans-serif;
 			font-size: 32px; 
 			font-weight: bold;
-			padding: 15px 30px; 
+			padding: 10px 10px; 
+            margin-top:-50px;
+
 			width: 800px; /* Увеличили ширину, чтобы влезло длинное выражение */
 			text-align: center;
 			border-radius: 60px; /* Красивое овальное скругление */
-			border: 4px solid #4CAF50; /* Сделаем рамку чуть толще */
+			border: 4px solid #78AFAC; /* Сделаем рамку чуть толще */
 			background: #fdfdfd; 
 			color: #006633; /* Темно-зеленый цвет для цифр */
 			box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Добавим легкую тень для объема */
@@ -103,7 +180,7 @@
         font-family: "Comic Sans MS", cursive, sans-serif;
         font-size: 28px;
         font-weight: bold;
-        color: #4CAF50;
+        color: #78AFAC;
         margin-top: 20px;
         display: flex;
         align-items: center;
@@ -113,32 +190,20 @@
 	.sideSelect label {cursor: pointer;}
     .sideSelect input[type="radio"] {width: 25px; height: 25px; cursor: pointer;}
 
-    /* Настройка контейнера на весах для 7 предметов в ряд */
-    .panContent {
-        position: absolute;
-        display: flex; /* Используем flex для выстраивания в одну линию */
-        justify-content: center;
-        align-items: flex-end;
-        gap: 1px; /* Твое пожелание по отступу */
-        width: 360px; /* Ширина под 7 предметов по 60px */
-        height: 80px;
-        /*background:#ff0000;*/
-    }
+
     
-
-
-
-
-
-    #mathExpression {font-family: "Comic Sans MS", sans-serif; font-size: 32px;}
-    
-    .letter{font-family: "Comic Sans MS", sans-serif; font-size: 36px; }
+ 
 </style>
-	
-    </style>
 </head>
 <body>
 
+<!-- ===== HEADER ===== -->
+<div class="main-title">
+<img src="images/ytmath_logo.png">YarnTale Math Playground: Fruity Scales🍓</div>
+
+
+<!-- ===== MAIN FRAME ===== -->
+<div class="main-wrapper">
 <div class="container">
     <div class="scales">
         <div class="indicator"><img id="balanceIcon" src="images/app_scales/digit/eq.png"></div>
@@ -151,9 +216,7 @@
         <div class="panContent rightPan"></div>
     </div>
 
-    <div style="margin: 20px;">
-        <input type="text" id="mathExpression" readonly value="0 = 0">
-    </div>
+    <div ><input type="text" id="mathExpression" readonly value="0 = 0"></div>
 
     <div class="sideSelect">
         <label><input type="radio" name="side" value="left" checked> Left Pan</label>
@@ -186,6 +249,15 @@
         <span class="letter">a</span><span class="letter">b</span><span class="letter">c</span><span class="letter">d</span><span class="letter">x</span>
     </div>
 </div>
+
+<div class="olisoft-footer">2026 © OliSoft — YarnTale Math Playground</div>
+</div> <!--content-area-->
+
+
+
+
+</div><!--main-wrapper-->
+
 
 <script>
     // База данных предметов
@@ -396,11 +468,8 @@ inputField.addEventListener('blur', function() {
 
 
     // Инициализация
-    updateAll();
-	
-	
-	
-	
+  updateAll();
+
 </script>
 
 </body>
