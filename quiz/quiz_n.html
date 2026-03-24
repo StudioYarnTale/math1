@@ -307,18 +307,17 @@ answersDiv.appendChild(btn);
 
 
 
-function checkAnswer(button, chosen, correct) {
-  results.push({
-    question: questions[current].question,
-    chosen: chosen,
-    correct: correct,
-    isRight: chosen === correct
-  });
-  clearInterval(timerInterval);
- const buttons=document.querySelectorAll(".match-btn");
-  buttons.forEach(b => b.disabled = true);
-  let message = "";
-  if (chosen === correct) {
+function checkAnswer(button,chosen,correct){
+results.push({
+question:questions[current].question,
+chosen:chosen,
+correct:correct,
+isRight:chosen===correct
+});
+clearInterval(timerInterval);
+const buttons=document.querySelectorAll(".match-btn");
+buttons.forEach(b=>b.disabled=true);
+let message="";
 if(chosen===correct){
 button.classList.add("match-correct");
 score+=questions[current].points;
@@ -327,7 +326,7 @@ message="Great! 🎉";
 button.classList.add("match-wrong");
 message="Try again 🙂";
 }
-  showCorrectAnswer(correct, message);
+showCorrectAnswer(correct,message);
 }
 
 
