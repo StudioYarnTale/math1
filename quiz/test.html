@@ -12,7 +12,25 @@
 
 <style>
 
+/* ===== TEST QUESTIONS ===== */
 
+.answer-option{
+display:block;
+margin:6px 0;
+font-size:18px;
+cursor:pointer;
+}
+
+.answer-option input{
+margin-right:8px;
+}
+
+/* текстовые ответы */
+
+.match-column input[type="text"]{
+margin-top:6px;
+font-size:16px;
+}
 </style>
 
 </head>
@@ -103,30 +121,40 @@ function buildTest1(){
 
 
 
+
+
+
 function buildTest(){
-	const container = document.getElementById("testContainer")
-	let html = ""
-	let q = 1
-	// первые 4 задания
-	test1.forEach((t,i)=>{
-	html+=`<div class="result-item"><p><b>${q}. ${t.question}</b></p>`
-	t.options.forEach(opt=>{
-	html+=`<label class="answer-option"><input type="radio"name="q${i}" value="${opt}">${opt}</label>`
-	})
-	html += "</div>"
-	q++
-	})
-	// последние задания
-	test2.forEach((t,i)=>{
-	html+=`<div class="result-item"><p><b>${q}. ${t.question}</b></p>`
-	<input type="text" id="num${i}" class="name-input"></div>`
-	q++
-	})
-	container.innerHTML = html
+const container=document.getElementById("testContainer")
+let html=""
+let q=1
+// первые задания (radio)
+test1.forEach((t,i)=>{
+html+=`<div class="result-item">
+<p><b>${q}. ${t.question}</b></p>`
+t.options.forEach(opt=>{
+html+=`<label class="answer-option">
+<input type="radio"
+name="q${i}"
+value="${opt}">
+${opt}
+</label>`
+})
+html+="</div>"
+q++
+})
+// последние задания (text)
+test2.forEach((t,i)=>{
+html+=`<div class="result-item">
+<p><b>${q}. ${t.question}</b></p>
+<input type="text"
+id="num${i}"
+class="name-input">
+</div>`
+q++
+})
+container.innerHTML=html
 }
-
-
-
 
 
 
