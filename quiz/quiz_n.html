@@ -135,6 +135,32 @@ transition:0.2s;
 background:#e6f3f2;
 }
 
+/* ===== BASE LAYOUT ===== */
+.main-wrapper
+.content-area
+
+/* ===== GAME CONTAINER ===== */
+.match-container
+.match-title
+.match-timer
+
+/* ===== BUTTONS ===== */
+.match-btn
+.start-btn
+.restart-btn
+
+/* ===== ANSWERS ===== */
+.match-column
+.match-selected
+.match-correct
+.match-wrong
+
+/* ===== RESULTS ===== */
+.results-box
+.result-item
+
+/* ===== INPUTS ===== */
+.name-input
 
 </style>
 </head>
@@ -292,7 +318,7 @@ function checkAnswer(button, chosen, correct) {
     isRight: chosen === correct
   });
   clearInterval(timerInterval);
-  const buttons = document.querySelectorAll("button");
+ const buttons=document.querySelectorAll(".match-btn");
   buttons.forEach(b => b.disabled = true);
   let message = "";
   if (chosen === correct) {
