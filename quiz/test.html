@@ -21,31 +21,20 @@ font-size:18px;
 cursor:pointer;
 }
 
-.answer-option input{
-margin-right:8px;
-}
+.answer-option input{margin-right:8px;}
 
 /* текстовые ответы */
-
 .match-column input[type="text"]{
 margin-top:6px;
 font-size:16px;
 }
 
 /* ===== QUESTION NUMBER ===== */
-
-.q-number{
-color:#4f8f8b;
-font-weight:bold;
-margin-right:8px;
-}
+.q-number{color:#4f8f8b; font-weight:bold; margin-left:-30px;}
 
 /* текст задания */
+.q-text{color:#000000;font-weight:bold;}
 
-.q-text{
-color:#000000;
-font-weight:bold;
-}
 </style>
 
 </head>
@@ -71,7 +60,7 @@ YarnTale Math Playground: Quiz Time
 
 <!-- ===== MAIN FRAME ===== -->
 <div class="main-wrapper">
-<div class="content-area">
+<div class="content-area" style="margin-top:-40px; margin-bottom:0px;">
 
 <!-- ============================= -->
 <!-- *****  The CONTENT AREA ***** -->
@@ -79,15 +68,10 @@ YarnTale Math Playground: Quiz Time
 
 
 <div class="match-container">
-<h2 class="match-title">📝 Test</h2>
-<div id="testContainer"
-class="match-column"></div>
-<button class="restart-btn"
-onclick="checkTest()">
-✔ Check Result
-</button>
-<h3 id="result"
-class="match-timer"></h3>
+<h2 class="match-title">📝 Mathematical Test</h2>
+<div id="testContainer"class="match-column"></div>
+<button class="restart-btn" onclick="checkTest()">✔ Check Result</button>
+<h3 id="result" class="match-timer"></h3>
 </div>
 
 
@@ -101,8 +85,7 @@ class="match-timer"></h3>
 <!--<script src="script/test.js"></script>-->
 <script>
 
-
-	let test1 = []
+let test1 = []
 let test2 = []
 
 async function loadTests(){
