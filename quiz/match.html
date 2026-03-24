@@ -49,6 +49,33 @@ margin-top:20px;
 flex-wrap:wrap;
 }
 
+
+/* ===== NAME ===== */
+.name-input{
+padding:10px 14px;
+font-size:16px;
+border-radius:12px;
+border:2px solid #78AFAC;
+width:220px;
+text-align:center;
+}
+
+.start-btn{
+margin-top:14px;
+padding:10px 20px;
+font-size:16px;
+border-radius:14px;
+border:2px solid #78AFAC;
+background:white;
+cursor:pointer;
+transition:0.2s;
+}
+
+.start-btn:hover{
+background:#e6f3f2;
+}
+
+
 /* ===== COLUMNS ===== */
 
 .match-column{
@@ -70,21 +97,11 @@ cursor:pointer;
 transition:0.2s;
 }
 
-.match-btn:hover{
-background:#e6f3f2;
-}
-
-.match-selected{
-background:khaki;
-}
-
-.match-correct{
-background:lightgreen;
-}
-
-.match-wrong{
-background:salmon;
-}
+.match-btn:active{transform:scale(0.96);}
+.match-btn:hover{background:#e6f3f2;}
+.match-selected{background:khaki;}
+.match-correct{background:lightgreen;}
+.match-wrong{background:salmon;}
 
 /* ===== RESULTS ===== */
 
@@ -163,7 +180,7 @@ YarnTale Math Playground
 </div><!--main-wrapper-->
 <div class="olisoft-footer">2026 © OliSoft — YarnTale Math Playground</div>
 
-
+<audio id="successSound"><source src="sounds/success.mp3"></audio>
 
 
 
@@ -188,7 +205,7 @@ let startTime;
 let endTime;
 let playerName = "";
 
-
+let timerInterval;
 
 
 // загрузка данных
@@ -224,9 +241,19 @@ function showNameScreen() {
 }
 
 
+function startGame1() {
+  const input = document.getElementById("nameInput").value.trim();
+  if (input === "") return alert("Enter name 😊");
+  playerName = input;
+  startTime = Date.now();
+  shuffledLeft = [...pairs].sort(() => Math.random() - 0.5);
+  shuffledRight = [...pairs].sort(() => Math.random() - 0.5);
+  drawBoard();
+}
 
 
 function startGame() {
+  timerInterval=setInterval(updateTimer,1000);
   const input = document.getElementById("nameInput").value.trim();
   if (input === "") return alert("Enter name 😊");
   playerName = input;
@@ -238,46 +265,10 @@ function startGame() {
 
 
 
-function drawBoard1() {
-  let leftHTML = "";
-  let rightHTML = "";
-  shuffledLeft.forEach(p => {
-    const solved = solvedLeft.includes(p.left);
-    const color = solved ? "lightgreen" : "";
-    const disabled = solved ? "disabled" : "";
-    leftHTML += `
-      <button style="background:${color}" ${disabled}
-      onclick="selectLeft('${p.left}')">${p.left}</button><br>`;
-  });
-  shuffledRight.forEach(p => {
-    const solved = solvedRight.includes(p.right);
-    const color = solved ? "lightgreen" : "";
-    const disabled = solved ? "disabled" : "";
-    rightHTML += `
-      <button style="background:${color}" ${disabled}
-      onclick="selectRight('${p.right}')">${p.right}</button><br>`;
-  });
-  document.getElementById("quiz").innerHTML = `
-    <h2>Match the pairs</h2>
-    <p id="timer"></p>
-    <div style="display:flex; gap:40px">
-      <div>${leftHTML}</div>
-      <div>${rightHTML}</div>
-    </div>
-  `;
-}
-
-
-
-
-
 function updateTimer() {
   const sec = Math.floor((Date.now() - startTime) / 1000);
   document.getElementById("timer").textContent = "Time: " + sec + "s";
 }
-
-
-
 
 
 function selectLeft(word) {
@@ -328,6 +319,7 @@ function checkMatch() {
     selectedLeftBtn.disabled = true;
     selectedRightBtn.disabled = true;
     results.push(`✅ ${selectedLeft} = ${selectedRight}`);
+    document.getElementById("successSound").play();
     resetSelection();
   } else {
     // неправильная пара
@@ -398,23 +390,32 @@ ${rightHTML}
 }
 
 
-
-
-
-function finishGame1() {
-  endTime = Date.now();
-  const time = Math.floor((endTime - startTime)/1000);
-  let review = "<h3>Results</h3>";
-  results.forEach(r => review += `<p>${r}</p>`);
-  document.getElementById("quiz").innerHTML = `
-    <h1>Great job ${playerName}!</h1>
-    <h2>Total time: ${time}s</h2>
-    ${review}
-    <button onclick="location.reload()">Restart</button>
-  `;
+function finishGame1(){
+endTime=Date.now();
+const time=Math.floor((endTime-startTime)/1000);
+let review="";
+results.forEach(r=>{
+review+=`<div class="result-item">${r}</div>`;
+});
+document.getElementById("quiz").innerHTML=`
+<div class="match-container">
+<h1 class="match-title">🌟 Great job ${playerName}!</h1>
+<h2 class="match-timer">⏱ Total time: ${time}s</h2>
+<div class="results-box">
+<h3>📋 Results</h3>
+${review}
+</div>
+<button class="restart-btn"
+onclick="location.reload()">
+🔄 Restart
+</button>
+</div>
+`;
 }
 
+
 function finishGame(){
+clearInterval(timerInterval);
 endTime=Date.now();
 const time=Math.floor((endTime-startTime)/1000);
 let review="";
@@ -439,7 +440,19 @@ onclick="location.reload()">
 
 
 
-
+function showNameScreen(){
+document.getElementById("quiz").innerHTML=`
+<div class="match-container">
+<h2 class="match-title">🧩 What is your name?</h2>
+<input id="nameInput" class="name-input"
+placeholder="Enter your name">
+<br>
+<button class="start-btn" onclick="startGame()">
+🚀 Start matching
+</button>
+</div>
+`;
+}
 
 
 
