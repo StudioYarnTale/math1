@@ -280,15 +280,11 @@ function showQuestion() {
       <h2>Final score: ${score} / ${maxScore}</h2>
       <h3>Questions answered: ${questions.length}</h3>
       <h3>Total time: ${timeText}</h3>
-
       <h2>You earned: ${reward.icon}</h2>
       <h3>${reward.text}</h3>
-
       <hr>
-
       <pre style="font-size:18px">${certificate}</pre>
       ${review}
-
       <button onclick="restartQuiz()">Restart quiz</button>
     `;
     return;
@@ -299,12 +295,13 @@ function showQuestion() {
   const answersDiv = document.getElementById("answers");
   answersDiv.innerHTML = "";
   q.options.sort(() => Math.random() - 0.5);
-  q.options.forEach(option => {
-    const btn = document.createElement("button");
-    btn.textContent = option;
-    btn.onclick = () => checkAnswer(btn, option, q.answer);
-    answersDiv.appendChild(btn);
-  });
+q.options.forEach(option => {
+const btn=document.createElement("button");
+btn.className="match-btn";
+btn.textContent=option;
+btn.onclick=()=>checkAnswer(btn,option,q.answer);
+answersDiv.appendChild(btn);
+});
   startTimer(q.answer);
 }
 
