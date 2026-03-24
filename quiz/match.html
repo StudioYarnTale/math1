@@ -10,7 +10,47 @@
 <link rel="stylesheet" href="math.css">
 <link rel="icon" type="image/png" href="images/ytmath_icon.png">
 
-<style></style>
+<style>
+/* ===== MATCH BOARD ===== */
+.match-board{
+display:flex;
+justify-content:center;
+gap:80px;
+margin-top:20px;
+}
+
+/* колонка */
+.match-column{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+/* кнопки */
+.match-btn{
+width:180px;
+padding:10px;
+border-radius:14px;
+border:2px solid #78AFAC;
+background:white;
+font-size:16px;
+cursor:pointer;
+transition:0.2s;
+}
+
+/* hover */
+.match-btn:hover{background:#e6f3f2;}
+/* выбранная */
+.match-selected{background:khaki;}
+/* правильная */
+.match-correct{background:lightgreen;}
+/* ошибка */
+.match-wrong{background:salmon;}
+
+
+
+
+</style>
 </head>
 <body>
 

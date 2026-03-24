@@ -90,31 +90,18 @@ font-style: italic;
 /* Группа ссылок */
 .link-group {margin: 25px 0;}
 /* Ссылки-кнопки */
-.link-button {
-    display: block;
-    margin: 8px auto;
-    padding: 10px 20px;
-    width: 260px;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 2px solid #c7dede;
-    text-decoration: none;
-    font-size: 18px;
-    color: #5b2ea5;
-    transition: all 0.2s ease;
+
+
+
+
+.links-panel {
+    max-width: 700px; 
+    width: 300px;
+    margin: auto;
+    padding: 30px;
+    padding-top: 10px;
 }
-/* Hover эффект */
-.link-button:hover {
-    background: #e6f3f2;
-    border-color: #6da8a4;
-    color: #3b1c7a;
-    transform: scale(1.03);
-}
-
-
-.links-panel {max-width: 700px; margin: auto; padding: 30px;}
-.link-group {margin-bottom: 35px;}
-
+.link-group {margin-bottom: 10px;}
 .group-title {
     font-size: 22px;
     font-weight: bold;
@@ -123,21 +110,24 @@ font-style: italic;
 }
 .link-button {
     display: block;
-    margin: 6px auto;
-    padding: 10px 18px;
-    width: 280px;
+    margin: 5px auto;
+    padding: 5px 18px;
+    width: 200px;
     background: #ffffff;
-    border: 2px solid #c7dede;
+    border: 1px solid #c7dede;
     border-radius: 12px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 14px;
     color: #4b2a91;
+    color: #669999;
     transition: all 0.2s ease;
 }
+.link-button:hover { background: #e6f3f2; border-color: #6da8a4;   transform: scale(1.02); color: #336666;}
 
 
 
-.link-button:hover {background: #e6f3f2; border-color: #6da8a4; transform: scale(1.04);}
+
+
 .contact-box{max-width:520px; margin:60px auto; padding:25px;}
 .contact-box h2{margin-bottom:10px;}
 .contact-box p{font-size:0.9em; opacity:0.8;}
@@ -149,7 +139,6 @@ font-style: italic;
     margin-top:8px;
     margin-bottom:14px;
 }
-
 
 
 /* ===== TOP HORIZONTAL MENU ===== */
@@ -184,4 +173,42 @@ border-color:#5a8d8a;
 transform:translateY(-2px);
 color:#006633;
 }
+
+
+
+/* ===== MATCH BOARD ===== */
+.match-board{
+display:flex;
+justify-content:center;
+gap:80px;
+margin-top:20px;
+}
+
+/* колонка */
+.match-column{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+/* кнопки */
+.match-btn{
+width:180px;
+padding:10px;
+border-radius:14px;
+border:2px solid #78AFAC;
+background:white;
+font-size:16px;
+cursor:pointer;
+transition:0.2s;
+}
+
+/* hover */
+.match-btn:hover{background:#e6f3f2;}
+/* выбранная */
+.match-selected{background:khaki;}
+/* правильная */
+.match-correct{background:lightgreen;}
+/* ошибка */
+.match-wrong{background:salmon;}
 
