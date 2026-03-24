@@ -20,12 +20,27 @@ let playerName = "";
 
 
 // загрузка данных
+
+
 fetch("../jsonfiles/match.json")
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("JSON not found");
+    }
+    return res.json();
+  })
   .then(data => {
     pairs = data;
     showNameScreen();
+  })
+  .catch(err => {
+    document.getElementById("quiz").innerHTML =
+      "<h2>❌ Cannot load match.json</h2>";
+    console.error(err);
   });
+
+
+
 
 function showNameScreen() {
   document.getElementById("quiz").innerHTML = `
