@@ -122,7 +122,7 @@ let q=1
 // первые задания (radio)
 test1.forEach((t,i)=>{
 html+=`<div class="result-item">
-<p><span class="q-number">Question ${q}</span><span class="q-text">${t.question}</span></p>`
+<p><span class="q-number">Question ${q}.<br/></span><span class="q-text">${t.question}</span></p>`
 t.options.forEach(opt=>{
 html+=`<label class="answer-option">
 <input type="radio"
@@ -137,7 +137,7 @@ q++
 // последние задания (text)
 test2.forEach((t,i)=>{
 html+=`<div class="result-item">
-<p><span class="q-number">Question ${q}</span><span class="q-text">${t.question}</span></p>
+<p><span class="q-number">Question ${q}.<br/></span><span class="q-text">${t.question}</span></p>
 <input type="text"
 id="num${i}"
 class="name-input">
