@@ -12,23 +12,55 @@
 
 <style>
 /* ===== MATCH BOARD ===== */
+/* ===== MATCH MAIN CONTAINER ===== */
+
+.match-container{
+max-width:900px;
+margin:40px auto;
+padding:30px;
+background:#f9fbfa;
+border:2px solid #9ec7c4;
+border-radius:24px;
+box-shadow:0 6px 14px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+/* ===== TITLE ===== */
+
+.match-title{
+font-size:30px;
+color:#4f8f8b;
+margin-bottom:10px;
+}
+
+.match-timer{
+font-size:18px;
+color:#6b8f8c;
+margin-bottom:20px;
+}
+
+/* ===== BOARD ===== */
+
 .match-board{
 display:flex;
 justify-content:center;
 gap:80px;
 margin-top:20px;
+flex-wrap:wrap;
 }
 
-/* колонка */
+/* ===== COLUMNS ===== */
+
 .match-column{
 display:flex;
 flex-direction:column;
 gap:10px;
 }
 
-/* кнопки */
+/* ===== BUTTONS ===== */
+
 .match-btn{
-width:180px;
+width:200px;
 padding:10px;
 border-radius:14px;
 border:2px solid #78AFAC;
@@ -38,16 +70,53 @@ cursor:pointer;
 transition:0.2s;
 }
 
-/* hover */
-.match-btn:hover{background:#e6f3f2;}
-/* выбранная */
-.match-selected{background:khaki;}
-/* правильная */
-.match-correct{background:lightgreen;}
-/* ошибка */
-.match-wrong{background:salmon;}
+.match-btn:hover{
+background:#e6f3f2;
+}
 
+.match-selected{
+background:khaki;
+}
 
+.match-correct{
+background:lightgreen;
+}
+
+.match-wrong{
+background:salmon;
+}
+
+/* ===== RESULTS ===== */
+
+.results-box{
+margin-top:20px;
+text-align:left;
+}
+
+.result-item{
+padding:6px 12px;
+margin:4px 0;
+background:#ffffff;
+border-radius:10px;
+border-left:6px solid #78AFAC;
+}
+
+/* ===== RESTART BUTTON ===== */
+
+.restart-btn{
+margin-top:25px;
+padding:10px 22px;
+font-size:18px;
+border-radius:14px;
+border:2px solid #78AFAC;
+background:white;
+cursor:pointer;
+transition:0.2s;
+}
+
+.restart-btn:hover{
+background:#e6f3f2;
+}
 
 
 </style>
@@ -75,7 +144,7 @@ YarnTale Math Playground
 <!-- ===== MAIN FRAME ===== -->
 <div class="main-wrapper">
 <div class="content-area">
-<h2 style="color:#5a8d8a;">Tool goes here</h2>
+
 <!-- ============================= -->
 <!-- *****  The CONTENT AREA ***** -->
 <!-- ============================= -->
@@ -169,7 +238,7 @@ function startGame() {
 
 
 
-function drawBoard() {
+function drawBoard1() {
   let leftHTML = "";
   let rightHTML = "";
   shuffledLeft.forEach(p => {
@@ -276,23 +345,6 @@ function checkMatch() {
 
 
 
-
-
-
-
-function finishGame() {
-  endTime = Date.now();
-  const time = Math.floor((endTime - startTime)/1000);
-  let review = "<h3>Results</h3>";
-  results.forEach(r => review += `<p>${r}</p>`);
-  document.getElementById("quiz").innerHTML = `
-    <h1>Great job ${playerName}!</h1>
-    <h2>Total time: ${time}s</h2>
-    ${review}
-    <button onclick="location.reload()">Restart</button>
-  `;
-}
-
 function flashWrong() {
   const body = document.body;
   body.style.background = "#ffdddd";
@@ -308,6 +360,91 @@ function resetSelection() {
   selectedLeftBtn = null;
   selectedRightBtn = null;
 }
+
+
+function drawBoard(){
+let leftHTML="";
+let rightHTML="";
+shuffledLeft.forEach(p=>{
+const solved=solvedLeft.includes(p.left);
+const disabled=solved?"disabled":"";
+const cls=solved?"match-btn match-correct":"match-btn";
+leftHTML+=`
+<button class="${cls}" ${disabled}
+onclick="selectLeft('${p.left}')">${p.left}</button>`;
+});
+shuffledRight.forEach(p=>{
+const solved=solvedRight.includes(p.right);
+const disabled=solved?"disabled":"";
+const cls=solved?"match-btn match-correct":"match-btn";
+rightHTML+=`
+<button class="${cls}" ${disabled}
+onclick="selectRight('${p.right}')">${p.right}</button>`;
+});
+document.getElementById("quiz").innerHTML=`
+<div class="match-container">
+<h2 class="match-title">🧩 Match the pairs</h2>
+<p id="timer" class="match-timer"></p>
+<div class="match-board">
+<div class="match-column">
+${leftHTML}
+</div>
+<div class="match-column">
+${rightHTML}
+</div>
+</div>
+</div>
+`;
+}
+
+
+
+
+
+function finishGame1() {
+  endTime = Date.now();
+  const time = Math.floor((endTime - startTime)/1000);
+  let review = "<h3>Results</h3>";
+  results.forEach(r => review += `<p>${r}</p>`);
+  document.getElementById("quiz").innerHTML = `
+    <h1>Great job ${playerName}!</h1>
+    <h2>Total time: ${time}s</h2>
+    ${review}
+    <button onclick="location.reload()">Restart</button>
+  `;
+}
+
+function finishGame(){
+endTime=Date.now();
+const time=Math.floor((endTime-startTime)/1000);
+let review="";
+results.forEach(r=>{
+review+=`<div class="result-item">${r}</div>`;
+});
+document.getElementById("quiz").innerHTML=`
+<div class="match-container">
+<h1 class="match-title">🌟 Great job ${playerName}!</h1>
+<h2 class="match-timer">⏱ Total time: ${time}s</h2>
+<div class="results-box">
+<h3>📋 Results</h3>
+${review}
+</div>
+<button class="restart-btn"
+onclick="location.reload()">
+🔄 Restart
+</button>
+</div>
+`;
+}
+
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
