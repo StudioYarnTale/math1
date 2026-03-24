@@ -195,7 +195,7 @@ YarnTale Math Playground: Quiz Time
 
 <div id="quiz">
   <h2 id="question"></h2>
-  <div id="answers"></div>
+<div id="answers" class="match-column"></div>
   <p id="score"></p>
 </div>
 
@@ -319,13 +319,14 @@ function checkAnswer(button, chosen, correct) {
   buttons.forEach(b => b.disabled = true);
   let message = "";
   if (chosen === correct) {
-    button.style.background = "lightgreen";
-    score += questions[current].points;
-    message = "Great! 🎉";
-  } else {
-    button.style.background = "salmon";
-    message = "Try again 🙂";
-  }
+if(chosen===correct){
+button.classList.add("match-correct");
+score+=questions[current].points;
+message="Great! 🎉";
+}else{
+button.classList.add("match-wrong");
+message="Try again 🙂";
+}
   showCorrectAnswer(correct, message);
 }
 
@@ -338,7 +339,7 @@ function timeIsUp(correct) {
     correct: correct,
     isRight: false
   });
-  const buttons = document.querySelectorAll("button");
+  const buttons=document.querySelectorAll(".match-btn");
   buttons.forEach(b => b.disabled = true);
   showCorrectAnswer(correct, "Time is up ⏰");
 }
@@ -346,11 +347,11 @@ function timeIsUp(correct) {
 
 
 function showCorrectAnswer(correct, message) {
-  const buttons = document.querySelectorAll("button");
+const buttons=document.querySelectorAll(".match-btn");
   buttons.forEach(b => {
-    if (b.textContent === correct) {
-      b.style.background = "lightgreen";
-    }
+  if(b.textContent===correct){
+    b.classList.add("match-correct");
+  }
   });
   const msg = document.createElement("p");
   msg.textContent = message + " Correct answer: " + correct;
