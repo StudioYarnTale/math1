@@ -208,3 +208,27 @@ color:#006633;
 }
 .fraction span.denominator {
 }
+
+.math-box {
+  background: #f6fbfa;
+  border: 2px solid #a8d5cf;
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin: 22px 0;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+}
+
+.math-box h3 {
+  margin-top: 0;
+  color: #5a8d8a;
+  font-size: 1.2em;
+}
+
+.math-box p {
+  margin: 8px 0;
+}
+
+.math-highlight {
+  font-weight: bold;
+  color: #3c6f6b;
+}
