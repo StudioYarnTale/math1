@@ -32,18 +32,6 @@ text-align:center;
 .main-title img{width:90px; margin:0px; margin-top:-10px;}
 
 /* ===== MAIN FRAME ===== */
-.main-wrapper{
-background:#ffffff;
-border:1px solid #78AFAC;
-border-radius:25px;
-padding:30px;
-box-shadow:0 10px 30px rgba(120,175,172,0.15);
-display:flex;
-flex-direction:column;
-align-items:center;
-margin-top:10px;
-}
-
 
 .main-wrapper{
 max-width:900px;
@@ -101,7 +89,7 @@ text-indent:2em;
 font-size:16px;
 color:#666666;
 color:#5c4633;
-
+text-align:justify;
 }
 
 .content-area{
