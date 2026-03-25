@@ -192,3 +192,19 @@ border-color:#5a8d8a;
 transform:translateY(-2px);
 color:#006633;
 }
+
+
+.fraction {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.fraction > span {
+  display: block;
+  padding: 0 0.1em;
+}
+.fraction span.numerator {
+  border-bottom: 1px solid;
+}
+.fraction span.denominator {
+}
