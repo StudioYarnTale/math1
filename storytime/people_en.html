@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-<!--<html lang="ru">-->
 <head>
 <meta charset="UTF-8">
 <title>YT Maths Playground  © OliSoft 2026 </title>
@@ -19,6 +18,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;   /* отступы слева и справа */
+  min-height: 900px;   /* ВАЖНО */
 }
 
 /* нижний слой — облачка */
@@ -75,28 +75,16 @@
   color: #2f6f6a;
   text-align: center;
   /* мягкий зелёный фон */
-  background: linear-gradient(
-    to bottom,
-    #f4fbf8,
-    #dff1ea
-  );
-  /* красивые закругления */
-  border-radius: 24px;
-  /* нежная рамка */
-  border: 2px solid #a9d1c7;
+  background: linear-gradient(to bottom, #f4fbf8, #dff1ea);
+  border-radius: 24px;  /* красивые закругления */
+  border: 2px solid #a9d1c7; /* нежная рамка */
   /* мягкая тень */
-  box-shadow:
-    0 4px 10px rgba(0,0,0,0.08),
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08),
     inset 0 1px 0 rgba(255,255,255,0.6);
   margin: 25px auto 15px auto;
 }
 
-.character {
-
-  position: absolute;
-  cursor: pointer;
-
-}
+.character {position: absolute;  cursor: pointer;}
 
 /* всплывающее описание */
 .tooltip {
@@ -133,11 +121,62 @@
   transform: translateX(-50%);
   border-width: 8px;
   border-style: solid;
-  border-color:
-    #f6fcfa
-    transparent
-    transparent
-    transparent;
+  border-color: #f6fcfa transparent transparent transparent;
+}
+
+
+.map-img {
+  width: 1000px;
+  height: auto;
+  display: block;
+  position: relative;   /* ВАЖНО */
+}
+
+
+
+.map_label {
+  position: absolute;
+  max-width: 150px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  color: #3f6f6b;
+  padding: 3px 2px;
+  margin: 0;
+  /* нежный зеленоватый фон */
+  background: linear-gradient(to bottom,  #ffffff, #e6f4ef  );
+  border-radius: 10px;  /* мягкие закругления */
+  border: 1px solid #a9d1c7;/* тонкая зелёная рамка */
+  box-shadow:0 3px 8px rgba(0,0,0,0.08);/* нежная тень */
+  }
+
+.map_label h2 {font-size: 12px; margin: 0; padding:1px 3px;}
+
+.map-container {
+  position: relative;
+  width: 1000px;
+  margin: 40px auto;
+}
+
+.map-intro {
+  width: 900px;
+  margin: -20px auto 0px auto;
+  padding: 18px 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #2f4f4c;
+  background: linear-gradient(to bottom,#f6fcfa,#e6f4ef  );
+  border-radius: 18px;
+  border: 1px solid #a9d1c7;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.map-intro h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+  text-align: center;
 }
 
 </style>
@@ -181,8 +220,7 @@ YarnTale Math Playground
 <!-- ============================= -->
 
 <div class="people">
-  <img src="images/boxes.png" class="boxes">
-  <img src="images/persons.png" class="persons">
+<img src="images/persons.jpg" class="persons">
 
 
  <div class="title-box" style="left:300px; top:-30px;">
@@ -296,21 +334,50 @@ Auntie Paulina is Uncle Alex’s wife — an honest, hardworking woman without a
         In truth, the entire estate — both manor and farm — stands firmly on her shoulders.
         She does not speak much. She does not need to. Her actions speak clearly: simple, honest, reliable — just like she is.
   </div>
+</div><!--char-->
+</div><!--people-->
+</div> <!--content-area-->
+
+<div class="map-intro">
+<h2>YarnTale Estate Map</h2>
+Welcome to the YarnTale Estate — a living world where stories, creativity, and learning grow side by side.
+Here, every path leads to discovery: some lead to fairy tales, some to new crafts and creative skills, and some to curious mathematical adventures. In this place, imagination, hands, and mind work together — turning yarn into characters, numbers into patterns, and ideas into stories.
+<br/>The Manor, the meadow, the pond, the shed, and the old oak tree are not just places on a map — they are homes of friends, secrets, questions, and discoveries. Each corner holds a story waiting to be told.
+<br/>YarnTale is a world created for children, parents, and grandparents to share — reading together, creating together, thinking together, and growing together. This map will guide you through the places where adventures begin, friendships are tested, and creativity turns into magic.
+<p style="text-align:center; margin-top:10px;">
+<b>Follow the paths and discover where each story begins.</b></p>
 </div>
-<br/><br/>
-<img src="images/yt_map.jpg" style="width:1000px;">
-
-</div>
 
 
+<div class="content-area" style="width:1100px; ">
 
+  <div class="map-container">
+  <img src="images/yt_map.jpg" class="map-img">
 
+<div class="map_label" style="left:450px; top:230px;">  <h2>Manor House</h2></div>
+<div class="map_label" style="left:220px; top:840px;">  <h2>The Cottage</h2></div>
+<div class="map_label" style="left:30px; top:515px;">  <h2>The Piggery</h2></div>
+<div class="map_label" style="left:200px; top:530px;">  <h2>The Poultry Yard</h2></div>
+<div class="map_label" style="left:160px; top:500px;">  <h2>The Coop</h2></div>
+<div class="map_label" style="left:630px; top:270px;">  <h2>The Bench</h2></div>
+<div class="map_label" style="left:40px; top:650px;">  <h2>The Wooden Shed</h2></div>
+<div class="map_label" style="left:70px; top:805px;">  <h2>The Cellar</h2></div>
+<div class="map_label" style="left:330px; top:650px;">  <h2>The Well</h2></div>
+<div class="map_label" style="left:100px; top:715px;">  <h2>Vegetable Garden</h2></div>
+<div class="map_label" style="left:20px; top:940px;">  <h2>The Outhouse</h2></div>
+<div class="map_label" style="left:820px; top:630px;">  <h2>The Old Oak</h2></div>
+<div class="map_label" style="left:490px; top:410px;">  <h2>The Sunny Meadow</h2></div>
+<div class="map_label" style="left:690px; top:710px;">  <h2>The Bridge</h2></div>
+<div class="map_label" style="left:850px; top:350px;">  <h2>The Quiet Pond</h2></div>
+<div class="map_label" style="left:730px; top:810px;">  <h2>The Thicket</h2></div>
+<div class="map_label" style="left:850px; top:825px;">  <h2>The Compost Heap</h2></div>
+</div><!--map-container-->
 </div> <!--content-area-->
 
 
-
+<div class="olisoft-footer">2026 © OliSoft — YarnTale Math Playground</div>
 
 </div><!--main-wrapper-->
-<div class="olisoft-footer">2026 © OliSoft — YarnTale Math Playground</div>
+
 </body>
 </html>

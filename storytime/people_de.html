@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+<meta charset="UTF-8">
+<title>YarnTale Mathe-Spielplatz © OliSoft 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive mathematical playground: calculator, function grapher, geometry tools.">
+<meta name="author" content="OliSoft">
+<link rel="stylesheet" href="math.css">
+<link rel="icon" type="image/png" href="images/ytmath_icon.png">
+
+
+<style>
+
+.people {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;   /* отступы слева и справа */
+  min-height: 900px;   /* ВАЖНО */
+}
+
+/* нижний слой — облачка */
+.people .boxes {
+  width: 100%;
+  height: auto;
+  display: block;
+    opacity: 0.05;   /* прозрачность боксов */
+}
+
+/* верхний слой — персонажи */
+.people .persons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+
+.character {
+  position: absolute;
+  width: 180px;
+  font-size: 13px;
+  line-height: 1.2;
+  text-align: center;
+  color: #3f6f6b;
+  padding: 7px 7px;
+  /* нежный зеленоватый фон */
+  background: linear-gradient(
+    to bottom,
+    #f4fbf8,
+    #e6f4ef  );
+  /* мягкие закругления */
+  border-radius: 14px;
+  /* тонкая зелёная рамка */
+  border: 1px solid #a9d1c7;
+  /* нежная тень */
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.08);}
+
+
+.character h2 {
+  font-size: 16px;
+  margin: 0 0 4px 0;
+}
+
+.title-box {
+  position: absolute;
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #2f6f6a;
+  text-align: center;
+  /* мягкий зелёный фон */
+  background: linear-gradient(to bottom, #f4fbf8, #dff1ea);
+  border-radius: 24px;  /* красивые закругления */
+  border: 2px solid #a9d1c7; /* нежная рамка */
+  /* мягкая тень */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  margin: 25px auto 15px auto;
+}
+
+.character {position: absolute;  cursor: pointer;}
+
+/* всплывающее описание */
+.tooltip {
+  position: absolute;
+  left: 50%; top: -10px;
+  transform: translate(-50%, -100%);
+  width: 300px;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: justify;
+  color: #2f4f4c;
+  background: #f6fcfa;
+  border-radius: 14px;
+  border: 1px solid #a9d1c7;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s;
+  z-index: 10;
+}
+
+.character:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -110%);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #f6fcfa transparent transparent transparent;
+}
+
+
+.map-img {
+  width: 1000px;
+  height: auto;
+  display: block;
+  position: relative;   /* ВАЖНО */
+}
+
+
+
+.map_label {
+  position: absolute;
+  max-width: 150px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  color: #3f6f6b;
+  padding: 3px 2px;
+  margin: 0;
+  /* нежный зеленоватый фон */
+  background: linear-gradient(to bottom,  #ffffff, #e6f4ef  );
+  border-radius: 10px;  /* мягкие закругления */
+  border: 1px solid #a9d1c7;/* тонкая зелёная рамка */
+  box-shadow:0 3px 8px rgba(0,0,0,0.08);/* нежная тень */
+  }
+
+.map_label h2 {font-size: 12px; margin: 0; padding:1px 3px;}
+
+.map-container {
+  position: relative;
+  width: 1000px;
+  margin: 40px auto;
+}
+
+.map-intro {
+  width: 900px;
+  margin: -20px auto 0px auto;
+  padding: 18px 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #2f4f4c;
+  background: linear-gradient(to bottom,#f6fcfa,#e6f4ef  );
+  border-radius: 18px;
+  border: 1px solid #a9d1c7;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.map-intro h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<!-- ===== HEADER ===== -->
+<div class="main-title">
+<img src="images/ytmath_logo.png">
+Mathe-Spielplatz
+</div>
+
+
+  <div class="lang-switch">
+    <a href="people_en.html">EN</a>
+    <a href="people_ru.html">RU</a>
+    <a href="people_de.html">DE</a>
+  </div>
+  
+
+<!-- ===== NAV MENU ===== -->
+<div class="link-grouph">
+<a class="link-buttonh" href="https://studioyarntale.github.io/yt/" target="_blank">🏡YarnTale</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/" target="_blank">🧮Mathe-Spielplatz</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/" target="_blank">📖Geschichtenzeit</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/mathmap_en.html" target="_blank">🎓Mathe-Schule</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/quiz/" target="_blank">❓Fragen und Quiz</a>
+</div>
+
+
+
+
+<!-- ===== MAIN FRAME ===== -->
+<div class="main-wrapper" style="width:1100px; max-width:1100px; ">
+<div class="content-area" style="width:1100px;">
+<h2 style="color:#5a8d8a;"></h2>
+<!-- ============================= -->
+<!-- *****  The CONTENT AREA ***** -->
+<!-- ============================= -->
+
+<div class="people">
+<img src="images/persons.jpg" class="persons">
+
+
+<div class="title-box" style="left:300px; top:-30px;">
+    Die YarnTale-Familie
+</div>
+
+<div class="character" style="left:300px; top:600px;">
+<h2>Anastasia</h2>
+Neugierig, mutig und voller Ideen.  
+Das ist ihre Welt —  und hier beginnen ihre Abenteuer.
+
+  <div class="tooltip">
+Anastasia ist ein kluges, neugieriges und lebhaftes Mädchen — die Enkelin von Vasily Voldemarovich. Sie interessiert sich für alles: Fragen, Menschen, Ideen und die Welt um sie herum. Sie hat einen starken Charakter und eine bemerkenswerte Entschlossenheit; wenn Anastasia sich etwas vornimmt, findet sie fast immer einen Weg, es zu erreichen.<br/>
+Sie hat keine Angst, aktiv zu sein, Fragen zu stellen oder neue Dinge auszuprobieren. Manchmal überfluten ihre Gefühle sie, und sie hat noch nicht gelernt, rechtzeitig innezuhalten oder eine Pause zu machen. Doch gerade diese emotionale Offenheit ist ihre Stärke — Anastasia lebt ganz und ehrlich, nicht nur halbherzig.<br/>
+Ihr Weg besteht darin zu lernen, nicht nur auf ihren Wunsch nach Bewegung nach vorn zu hören, sondern auch den Moment zu erkennen, in dem es Zeit ist, langsamer zu werden, nachzudenken und bewusst ihre Richtung zu wählen.
+  </div>
+</div>
+
+
+
+<div class="character" style="left:510px; top:650px;">
+<h2>Lord Vasily Voldemarovich</h2>
+Weise und freundlich.  Er lehrt Geduld, Nachdenken und Mut.
+
+  <div class="tooltip">
+
+Lord Vasily Voldemarovich ist ein würdevoller Mann in seinen späteren Jahren — ein pensionierter Offizier mit silbernem Haar, ruhigem Blick und der stillen Würde eines Menschen, der ein langes und ehrenvolles Leben geführt hat.
+Seine Frau ist vor langer Zeit gestorben, und seine Kinder sind erwachsen. Er lebt allein — selbstständig, nachdenklich und im Frieden mit sich selbst.
+Während seiner Dienstzeit diente er treu und gewissenhaft und musste oft schwierige und unpopuläre Entscheidungen treffen. Die Pflicht stand für ihn immer an erster Stelle. Doch hinter seiner strengen Haltung verbirgt sich ein sanftes Herz und eine tiefe Liebe zu allen Lebewesen.<br/>
+Nach seiner Pensionierung entschied er sich für ein anderes Leben — ein Leben im Einklang mit der Natur. Er kaufte ein verlassenes Gut und stellte es gemeinsam mit Onkel Alex und Tante Paulina Schritt für Schritt wieder her.
+Das Haus wurde erneuert, der Hof repariert und das überwucherte Gelände geräumt. Im Frühling erwachte das Gut erneut zum Leben: Krähen, Schnattern und fröhliches Grunzen erfüllten die Luft. Kleine Ferkel wedelten vor Freude mit den Schwänzen, wenn sie ihn sahen, und der Hahn Arthur begrüsste ihn stolz mit einem lauten „Kikeriki!“<br/>
+Vasily Voldemarovich behandelt alle Lebewesen mit grossem Respekt. Selbst den kleinsten Insekten auf dem Weg weicht er vorsichtig aus. Er kann stundenlang durch Felder und Wiesen gehen, tief die Luft einatmen und die Schönheit der Welt bewundern.
+Meistens findet man ihn entweder im Garten — beim Beschneiden der Rosen oder beim ruhigen Gespräch über Kartoffeln mit Onkel Alex — oder in seinem gemütlichen Arbeitszimmer, umgeben von Büchern.<br/>
+Gekleidet in eine Samtweste, ordentliche Hosen und mit einer alten Taschenuhr an einer Kette verkörpert er eine seltene Mischung aus Würde, Einfachheit und innerer Stärke.<br/>
+
+Er ist ein Mann, der viel gesehen und viel verstanden hat — und der schliesslich Frieden dort gefunden hat, wo er hingehört: zwischen Bäumen, Vögeln, Büchern und ehrlichen Menschen.
+
+  </div>
+</div>
+
+
+<div class="character" style="left:150px; top:270px;">
+<h2>Liumy das Fuchsjunge</h2>
+Verschmitzt und klug.  Er erfindet ständig neue Spiele und Abenteuer.
+  <div class="tooltip">
+Liumy das Fuchsjunge ist verspielt, neugierig, lieb und unglaublich klug. Er liebt es zu rennen und zu spielen, unzählige Fragen zu stellen — und einen Moment später ganz still dazusitzen, mit einer kleinen Falte zwischen den Brauen, während er über die Antworten nachdenkt. Liumy ist wie ein Sonnenstrahl: lebhaft, schnell und mit leuchtenden Augen.<br/>
+Er ist ein treuer Freund. Er rennt über die Felder mit Pippa dem Hund, bespricht Geschichten mit Michel der Ratte und liebt nichts mehr, als sich unter einer Decke auf einem Stuhl neben Philomur der Katze zusammenzurollen. Obwohl er noch jung ist, zeigt Liumy bereits echte Freundlichkeit — und einen kleinen Funken überraschender Weisheit.
+Liumy ist auch ein geborener Erfinder. Er hat immer neue Ideen und denkt sich ständig neue Spiele, Geschichten, Zeichnungen und fröhliche Abenteuer für alle um ihn herum aus.
+  </div>
+</div>
+
+
+<div class="character" style="left:-20px; top:380px;">
+<h2>Pippa der Hund</h2>
+Treu und fröhlich.  Immer in der Nähe, um zu schützen und zu spielen.
+  <div class="tooltip">
+Pippa ist der junge Hund von Herrn Vasily Voldemarovich — eine Mischung aus Beagle und Mischlingshund. Der Beagle ist ein mittelgroßer Jagdhund, bekannt für seinen ausgezeichneten Geruchssinn und sein lebhaftes Wesen. Pippa ist weiß mit roten und schwarzen Flecken und hat lange, weiche Schlappohren.<br/>
+Sie ist fröhlich, lebhaft und verspielt — sehr freundlich und gutmütig. Sie begrüßt jeden mit einem fröhlichen Bellen, wedelt glücklich mit dem Schwanz und versucht immer, ein kleines Küsschen zu geben.<br/>
+Pippa ist eine enge Freundin des kleinen Fuchses Liumy. Ihre liebste Beschäftigung ist es, gemeinsam Ball zu spielen. Sie wird von allen Bewohnern des Gutes sehr geliebt. Sie jagt gern den Hühnern hinterher, tut ihnen aber niemals etwas; stattdessen schützt sie sie vor unerwünschten Gästen und Raubvögeln.<br/>
+Pippa verkörpert Treue, Klugheit und innere Würde. Sie liebt es, mit Liumy über die Felder zu rennen und sich danach zu Philomur zu legen, um seinen Geschichten zu lauschen.<br/>
+Gut gepflegt, gehorsam und aufmerksam gegenüber ihren Freunden trägt sie eine besondere Würde in sich — nicht auffällig, sondern echt. Ihre Nähe bringt immer Ruhe und Wärme.
+  </div>
+</div>
+
+
+<div class="character" style="left:90px; top:750px;">
+<h2>Phil das Gänseküken</h2>
+Mutig und entschlossen.  Er gibt niemals auf — egal was passiert.
+  <div class="tooltip">
+Phil ist ein kluges, neugieriges und außergewöhnlich mutiges kleines Gänseküken. Eines Tages erregten sein wacher Verstand und sein lebhafter Geist die Aufmerksamkeit eines mächtigen Adlers. Der Raubvogel packte Phil und trug ihn weit fort von seinem Zuhause. Seine Mutter kämpfte verzweifelt, um ihn zu retten, doch sie konnte den Kampf nicht gewinnen.<br/>
+Viele Tage lang lebte Phil hoch oben im Bergnest des Adlers, wo der Raubvogel hoffte, ihn als seinen eigenen Erben aufzuziehen. Doch Phil vergaß niemals seine Mutter und den Geflügelhof, den er sein Zuhause nannte. Die Erinnerung an sein Zuhause lebte still in seinem Herzen und gab ihm den Mut, das scheinbar Unmögliche zu wagen.<br/>
+Schließlich gelang ihm die Flucht. Lange wanderte er durch fremde Gegenden, bis er schließlich den Weg zurück zu dem Ort fand, an dem seine Mutter auf ihn gewartet hatte.  
+Er ist noch jung, aber er kennt bereits den Wert des Lebens — und er gibt niemals auf.
+  </div>
+</div>
+
+
+
+<div class="character" style="left:720px; top:750px;">
+<h2>Peter das Ferkel</h2>
+Still und sanft.  Er träumt von Freundschaft und Güte.
+  <div class="tooltip">
+Peter ist still, schüchtern und ein wenig ängstlich. Schon als er ganz klein war, neckten ihn die anderen wegen seiner runden rosa Bäckchen und seines runden kleinen Bauches — sie nannten ihn sogar Dinge wie „Donut“. Das tat ihm sehr weh. Nach und nach wurde Peter vorsichtig und zurückhaltend: Er vertraut nicht schnell und ist sich oft nicht sicher, ob er wirklich dazugehört. Oft spielt er allein — so fühlt es sich sicherer an. Schließlich ist es nicht seine Schuld, dass Ferkel nun einmal so aussehen.<br/>
+Unter diesem schüchternen Äußeren ist Peter lieb, sanft und voller Güte. Er hütet einen kleinen Ball wie einen Schatz und spielt damit, als wäre er sein allerbester Freund. Am meisten wünscht sich Peter echte Freunde — solche, die ihn genau so annehmen, wie er ist. Bisher hat das allerdings noch nicht ganz geklappt.<br/>
+Seine Mutter, die Sau Martha, versuchte einmal, ihn in einer Ballettschule anzumelden. Er wurde nicht aufgenommen, und das war ein weiterer Schlag für sein Selbstvertrauen — ein weiterer Moment der Enttäuschung. Tief in seinem Herzen war Peter jedoch ein wenig erleichtert: Tanzen mag er eigentlich gar nicht besonders. Was er wirklich liebt, ist Ballspielen oder im Sandkasten zu graben — dort fühlt er sich am wohlsten.
+  </div>
+</div>
+
+
+<div class="character" style="left:690px; top:385px;">
+<h2>Onkel Alex</h2>
+Der Landarbeiter — stark und fleißig.  Er sorgt dafür, dass das Land<br/> gepflegt und in Ordnung bleibt.
+
+  <div class="tooltip">
+Onkel Alex ist ein fleißiger, gutherziger Mann — einfach im besten Sinne des Wortes. Schlank, aber kräftig, von Sonne und Wind gezeichnet, mit rauen Händen und einem Gesicht, das vom Leben selbst geprägt wurde.<br/>
+Er arbeitet lange Tage und beschwert sich nie. Er liebt das Land, die frische Luft und den ruhigen Rhythmus des einfachen Lebens. Er kann stundenlang am Teich sitzen und schweigend angeln, zufrieden mit nichts weiter als dem Rascheln des Schilfs und dem Duft der Wildblumen.<br/>
+Alex sagt, was er denkt, und tut, was er sagt. Für Lügen, Tricks oder unnötiges Drama hat er keine Geduld.  
+„Das Leben ist zu kurz für Hinterlist“, murmelt er oft.<br/>
+Manchmal kann er hitzköpfig sein — schnell aufbrausend, schnell mit Worten — manchmal etwas zu scharf. Doch er drückt sich niemals vor Verantwortung. Wenn er merkt, dass er sich geirrt hat, richtet er sich auf und versucht, alles wieder in Ordnung zu bringen.
+Er spricht nicht in schönen Worten. Das braucht er auch nicht. Seine Taten sind fest und zuverlässig — wie ein guter Stein in einer alten Mauer.
+  </div>
+</div>
+
+
+
+<div class="character" style="left:850px; top:530px;">
+<h2>Tante Paulina</h2>
+Freundlich und fürsorglich.  Das warme Herz des Hauses.
+  <div class="tooltip">
+Tante Paulina ist die Frau von Onkel Alex — eine ehrliche, fleißige Frau ohne jede Spur von List oder Verstellung.<br/>
+Sie ist das stille Herz des Hauses. Sie hält alles blitzsauber, kocht, wäscht, schrubbt, näht und schafft es irgendwie, all das mit ruhigen und geschickten Händen zu bewältigen.<br/>
+Für ihr Alter wirkt sie ein wenig älter. Jahre voller Sonne, Wind und harter Arbeit haben ihr Gesicht geprägt. Für Schönheitssalons oder modische Geschäfte hat sie keine Zeit. Sie kleidet sich einfach, aber ordentlich — ein dunkelgrün gestreiftes Kleid, eine gestrickte Strickjacke und eine saubere weiße Schürze, die sie jeden Tag wäscht.<br/>
+Am Morgen arbeitet sie im Gutshaus von Lord Vasily Voldemarovich: Sie kocht, putzt, kümmert sich um die Küche und bringt frische Lebensmittel vom Markt. Nach der Arbeit kehrt sie nach Hause zurück — zu ihrem Gemüsegarten, dem Geflügelhof, den sauberen Wegen und den gepflegten Schuppen.  
+Sie baut Kräuter und Gemüse an, füttert die Hühner, sammelt Eier und hält alles in bester Ordnung.<br/>
+Tante Paulina ist freundlich, mütterlich und voller stiller Fürsorge. Sie beschwert sich nie, obwohl sie von früh bis spät ohne Pause arbeitet.  
+In Wahrheit ruht das ganze Gut — sowohl das Herrenhaus als auch der Hof — fest auf ihren Schultern.
+Sie spricht nicht viel. Das muss sie auch nicht. Ihre Taten sprechen für sich: einfach, ehrlich und zuverlässig — genau wie sie selbst.
+  </div>
+</div><!--char-->
+</div><!--people-->
+</div> <!--content-area-->
+
+
+
+
+<div class="map-intro">
+<h2>Karte des YarnTale-Gutes</h2>
+Willkommen im YarnTale-Gut — einer lebendigen Welt, in der Geschichten, Kreativität und Lernen Seite an Seite wachsen.
+Hier führt jeder Weg zu neuen Entdeckungen: Manche führen zu Märchen, manche zu neuen handwerklichen und kreativen Fähigkeiten, und andere zu spannenden mathematischen Abenteuern. In dieser Welt arbeiten Fantasie, Hände und Verstand zusammen — sie verwandeln Garn in Figuren, Zahlen in Muster und Ideen in Geschichten.
+<br/>Das Herrenhaus, die Wiese, der Teich, der Schuppen und die alte Eiche sind nicht nur Orte auf einer Karte — sie sind die Heimat von Freunden, Geheimnissen, Fragen und Entdeckungen. Jeder Winkel birgt eine Geschichte, die darauf wartet, erzählt zu werden.
+<br/>YarnTale ist eine Welt, die für Kinder, Eltern und Großeltern geschaffen wurde — um gemeinsam zu lesen, zu gestalten, zu denken und zu wachsen. Diese Karte wird euch zu den Orten führen, an denen Abenteuer beginnen, Freundschaften geprüft werden und Kreativität zu echter Magie wird.
+<p style="text-align:center; margin-top:10px;">
+<b>Folgt den Wegen und entdeckt, wo jede Geschichte beginnt.</b>
+</p>
+</div>
+
+
+<div class="content-area" style="width:1100px; ">
+
+  <div class="map-container">
+  <img src="images/yt_map.jpg" class="map-img">
+<div class="map_label" style="left:450px; top:230px;">  <h2>Herrenhaus</h2></div>
+<div class="map_label" style="left:220px; top:840px;">  <h2>Das Häuschen</h2></div>
+<div class="map_label" style="left:30px; top:515px;">  <h2>Der Schweinestall</h2></div>
+<div class="map_label" style="left:200px; top:530px;">  <h2>Der Geflügelhof</h2></div>
+<div class="map_label" style="left:160px; top:500px;">  <h2>Der Hühnerstall</h2></div>
+<div class="map_label" style="left:630px; top:270px;">  <h2>Die Bank</h2></div>
+<div class="map_label" style="left:40px; top:650px;">  <h2>Der Holzschuppen</h2></div>
+<div class="map_label" style="left:70px; top:805px;">  <h2>Der Keller</h2></div>
+<div class="map_label" style="left:330px; top:650px;">  <h2>Der Brunnen</h2></div>
+<div class="map_label" style="left:100px; top:715px;">  <h2>Der Gemüsegarten</h2></div>
+<div class="map_label" style="left:20px; top:940px;">  <h2>Das Plumpsklo</h2></div>
+<div class="map_label" style="left:820px; top:630px;">  <h2>Die Alte Eiche</h2></div>
+<div class="map_label" style="left:490px; top:410px;">  <h2>Die Sonnige Wiese</h2></div>
+<div class="map_label" style="left:690px; top:710px;">  <h2>Die Brücke</h2></div>
+<div class="map_label" style="left:850px; top:350px;">  <h2>Der Stille Teich</h2></div>
+<div class="map_label" style="left:730px; top:810px;">  <h2>Das Dickicht</h2></div>
+<div class="map_label" style="left:850px; top:825px;">  <h2>Der Komposthaufen</h2></div>
+</div><!--map-container-->
+</div> <!--content-area-->
+
+
+<div class="olisoft-footer">2026 © OliSoft — YarnTale Mathe-Spielplatz</div>
+</div><!--main-wrapper-->
+
+</body>
+</html>

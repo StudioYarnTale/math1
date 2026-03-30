@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!--<html lang="en-GB">-->
-<html lang="ru">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<title>YT Maths Playground  © OliSoft 2026 </title>
+<title>Математическая площадка YarnTale — Карта © OliSoft 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Interactive mathematical playground: calculator, function grapher, geometry tools.">
 <meta name="author" content="OliSoft">
@@ -19,6 +18,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;   /* отступы слева и справа */
+  min-height: 900px;   /* ВАЖНО */
 }
 
 /* нижний слой — облачка */
@@ -75,28 +75,16 @@
   color: #2f6f6a;
   text-align: center;
   /* мягкий зелёный фон */
-  background: linear-gradient(
-    to bottom,
-    #f4fbf8,
-    #dff1ea
-  );
-  /* красивые закругления */
-  border-radius: 24px;
-  /* нежная рамка */
-  border: 2px solid #a9d1c7;
+  background: linear-gradient(to bottom, #f4fbf8, #dff1ea);
+  border-radius: 24px;  /* красивые закругления */
+  border: 2px solid #a9d1c7; /* нежная рамка */
   /* мягкая тень */
-  box-shadow:
-    0 4px 10px rgba(0,0,0,0.08),
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08),
     inset 0 1px 0 rgba(255,255,255,0.6);
   margin: 25px auto 15px auto;
 }
 
-.character {
-
-  position: absolute;
-  cursor: pointer;
-
-}
+.character {position: absolute;  cursor: pointer;}
 
 /* всплывающее описание */
 .tooltip {
@@ -133,11 +121,62 @@
   transform: translateX(-50%);
   border-width: 8px;
   border-style: solid;
-  border-color:
-    #f6fcfa
-    transparent
-    transparent
-    transparent;
+  border-color: #f6fcfa transparent transparent transparent;
+}
+
+
+.map-img {
+  width: 1000px;
+  height: auto;
+  display: block;
+  position: relative;   /* ВАЖНО */
+}
+
+
+
+.map_label {
+  position: absolute;
+  max-width: 150px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  color: #3f6f6b;
+  padding: 3px 2px;
+  margin: 0;
+  /* нежный зеленоватый фон */
+  background: linear-gradient(to bottom,  #ffffff, #e6f4ef  );
+  border-radius: 10px;  /* мягкие закругления */
+  border: 1px solid #a9d1c7;/* тонкая зелёная рамка */
+  box-shadow:0 3px 8px rgba(0,0,0,0.08);/* нежная тень */
+  }
+
+.map_label h2 {font-size: 12px; margin: 0; padding:1px 3px;}
+
+.map-container {
+  position: relative;
+  width: 1000px;
+  margin: 40px auto;
+}
+
+.map-intro {
+  width: 900px;
+  margin: -20px auto 0px auto;
+  padding: 18px 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #2f4f4c;
+  background: linear-gradient(to bottom,#f6fcfa,#e6f4ef  );
+  border-radius: 18px;
+  border: 1px solid #a9d1c7;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.map-intro h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+  text-align: center;
 }
 
 </style>
@@ -149,25 +188,24 @@
 <!-- ===== HEADER ===== -->
 <div class="main-title">
 <img src="images/ytmath_logo.png">
-YarnTale Math Playground
+Математическая площадка YarnTale
 </div>
 
-  <div class="lang-switch">
+    <div class="lang-switch">
     <a href="people_en.html">EN</a>
     <a href="people_ru.html">RU</a>
     <a href="people_de.html">DE</a>
-  </div>
-  
+   </div>
   
 <!-- ===== NAV MENU ===== -->
 <div class="link-grouph">
 <a class="link-buttonh" href="https://studioyarntale.github.io/yt/" target="_blank">🏡YarnTale</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/" target="_blank">🧮Math Playground</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/" target="_blank">📖Story Time</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/mathmap_en.html" target="_blank">🎓Math School</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/quiz/" target="_blank">❓Questions and Quizzes</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/" target="_blank">🧮Математическая площадка</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/" target="_blank">📖Время историй</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/mathmap_ru.html" target="_blank">🎓Математическая школа</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/quiz/" target="_blank">❓Вопросы и викторины</a>
 </div>
-
+<br/>
 
 
 
@@ -180,8 +218,7 @@ YarnTale Math Playground
 <!-- ============================= -->
 
 <div class="people">
-  <img src="images/boxes.png" class="boxes">
-  <img src="images/persons.png" class="persons">
+<img src="images/persons.jpg" class="persons">
 
 
  <div class="title-box" style="left:300px; top:-30px;">
@@ -282,19 +319,47 @@ YarnTale Math Playground
         Тётя Поля мало говорит — ей это и не нужно. Её дела говорят за неё: просто, честно и надёжно. Точно так же, как она сама.
   </div>
 </div>
-
-
 </div>
-
-
-
-
 </div> <!--content-area-->
 
 
+<div class="map-intro">
+<h2>Карта поместья YarnTale</h2>
+Добро пожаловать в поместье YarnTale — живой мир, где истории, творчество и обучение растут рядом друг с другом. Здесь каждая дорожка ведёт к открытиям: одни — к сказкам, другие — к новым приёмам рукоделия и творчества, а третьи — к увлекательным математическим открытиям и приключениям.
+<br/>В этом мире воображение, руки и разум работают вместе — превращая нити в персонажей, числа в узоры, а идеи — в истории. Усадьба, луг, пруд, сарай и старый дуб — это не просто места на карте, это дома друзей, тайн, вопросов и открытий.
+<br/>Каждый уголок хранит свою историю, которая ждёт, чтобы её рассказали. YarnTale — это мир, созданный для детей, родителей и бабушек с дедушками, чтобы читать вместе, заниматься творчеством, размышлять и расти вместе.
+Эта карта поможет вам найти места, где начинаются приключения, проверяется дружба и творчество превращается в настоящее волшебство.
+<p style="text-align:center; margin-top:10px;">
+<b>Следуйте по дорожкам и откройте, где начинается каждая история.</b>
+</p>
+</div>
 
 
+<div class="content-area" style="width:1100px; ">
+  <div class="map-container">
+  <img src="images/yt_map.jpg" class="map-img">
+<div class="map_label" style="left:450px; top:230px;"> <h2>Усадебный дом</h2></div>
+<div class="map_label" style="left:220px; top:840px;">  <h2>Домик дяди Лёши</h2></div>
+<div class="map_label" style="left:30px; top:515px;">  <h2>Свинарник</h2></div>
+<div class="map_label" style="left:200px; top:530px;">  <h2>Птичий двор</h2></div>
+<div class="map_label" style="left:160px; top:500px;">  <h2>Курятник</h2></div>
+<div class="map_label" style="left:630px; top:270px;">  <h2>Скамейка</h2></div>
+<div class="map_label" style="left:40px; top:650px;">  <h2>Деревянный сарай</h2></div>
+<div class="map_label" style="left:70px; top:805px;">  <h2>Погреб</h2></div>
+<div class="map_label" style="left:330px; top:650px;">  <h2>Колодец</h2></div>
+<div class="map_label" style="left:130px; top:715px;">  <h2>Грядки</h2></div>
+<div class="map_label" style="left:20px; top:940px;">  <h2>Уборная</h2></div>
+<div class="map_label" style="left:820px; top:630px;">  <h2>Старый дуб</h2></div>
+<div class="map_label" style="left:490px; top:410px;">  <h2>Солнечная поляна</h2></div>
+<div class="map_label" style="left:690px; top:710px;">  <h2>Мостик</h2></div>
+<div class="map_label" style="left:850px; top:350px;">  <h2>Тихий пруд</h2></div>
+<div class="map_label" style="left:730px; top:810px;">  <h2>Заросли</h2></div>
+<div class="map_label" style="left:850px; top:825px;">  <h2>Компостная куча</h2></div>
+</div><!--map-container-->
+</div> <!--content-area-->
+
+<div class="olisoft-footer">2026 © OliSoft — Математическая площадка YarnTale</div>
 </div><!--main-wrapper-->
-<div class="olisoft-footer">2026 © OliSoft — YarnTale Math Playground</div>
+
 </body>
 </html>
