@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>YT Maths Playground © OliSoft 2026</title>
+<link rel="stylesheet" href="math.css">
+<style>
+    /* Стили специально для микроскопа внутри вашего шаблона */
+    #microscope-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    canvas { 
+        background: #fff; 
+        box-shadow: 0 0 15px rgba(0,0,0,0.1); 
+        border-radius: 8px;
+        cursor: crosshair; 
+        width:900px;
+    }
+    #controls { 
+        margin-top: 20px; 
+        background: white; 
+        padding: 15px; 
+        border-radius: 8px; 
+        width: 100%;
+        max-width: 900px;
+        color: #333;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    .distance-info { margin-top: 15px; font-weight: bold; color: #d32f2f; font-size: 1.2em; }
+</style>
+</head>
+<body>
+
+<div class="main-title" >
+    <img src="images/ytmath_logo.png">
+    YarnTale Math Playground
+</div>
+
+<div class="link-grouph">    <a class="link-buttonh" href="...">🏡YarnTale</a>    </div>
+
+
+
+
+<div class="main-frame">
+    <div id="microscope-container">
+        <canvas id="microscope"></canvas>
+
+        <div id="controls">
+            <strong>📊 Исследование координат Настеньки:</strong>
+            <table id="pointsTable">
+                <thead>
+                    <tr>
+                        <th>Точка</th>
+                        <th>Координата (x)</th>
+                        <th>Цвет</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="distanceDisplay" class="distance-info"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    // Сюда вставляем весь код из последнего gemini_line.html
+    // (функции init, draw, drawLines, обработчики кликов и колесика)
+    
+    const canvas = document.getElementById('microscope');
+    const ctx = canvas.getContext('2d');
+    const tableBody = document.querySelector('#pointsTable tbody');
+    const distanceDisplay = document.getElementById('distanceDisplay');
+
+    let width, height;
+    let zoom; 
+    let offset = { x: 0, y: 0 };
+    let isDragging = false;
+    let lastMouseX = 0;
+    
+    // Массив для хранения точек
+    let points = [];
+    const pointColors = ["red", "blue", "green", "orange", "purple", "brown", "deeppink", "darkcyan", "olive", "navy"];
+    const pointNames = "ABCDEFGHIJ".split("");
+
+    function init1() {
+        width = canvas.width = window.innerWidth * 0.95; 
+        height = canvas.height = 200; 
+        zoom = width / 11; 
+        offset.x = width / 2;
+        offset.y = height / 2;
+        draw();
+    }
+
+    function getSuperscript(num) {
+        const superscripts = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
+        return num.toString().split('').map(char => superscripts[char] || char).join('');
+    }
+
+    function formatLabel(num, precision = 10) {
+        let absNum = Math.abs(num);
+        if (absNum < 1e-15) return "0";
+        if (absNum < 0.0001 || absNum >= 10000) {
+            let expParts = num.toExponential(3).split('e');
+            return expParts[0] + '·10' + getSuperscript(parseInt(expParts[1]));
+        }
+        return parseFloat(num.toFixed(precision)).toString();
+    }
+
+    function drawLines(step, isMajor) {
+        let distanceOnScreen = step * zoom;
+        let showLabelsNow = isMajor && (distanceOnScreen > 50);
+        let startX = Math.floor(-offset.x / (step * zoom)) * step;
+        let endX = Math.ceil((width - offset.x) / (step * zoom)) * step;
+
+        for (let x = startX; x <= endX; x += step) {
+            let canvasX = x * zoom + offset.x;
+            let isZero = Math.abs(x) < 1e-15;
+            
+            ctx.beginPath();
+            ctx.strokeStyle = isZero ? "#000" : (isMajor ? "#4a6741" : "#cccccc");
+            ctx.lineWidth = isZero ? 4 : (isMajor ? 2 : 1);
+            let tickSize = isZero ? 35 : (isMajor ? 15 : 8);
+            ctx.moveTo(canvasX, offset.y - tickSize);
+            ctx.lineTo(canvasX, offset.y + tickSize);
+            ctx.stroke();
+            
+            if (isZero || showLabelsNow) {
+                ctx.fillStyle = isZero ? "#000" : "#4a6741";
+                ctx.font = isZero ? "bold 22px Arial" : "bold 16px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(formatLabel(x), canvasX, offset.y - tickSize - 10);
+            }
+        }
+    }
+
+    function drawPoints() {
+        points.forEach(p => {
+            let canvasX = p.x * zoom + offset.x;
+            
+            // Рисуем саму точку (кружок)
+            ctx.beginPath();
+            ctx.arc(canvasX, offset.y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Подпись имени и координаты
+            ctx.fillStyle = p.color;
+            ctx.font = "bold 14px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(`${p.name} (${formatLabel(p.x, 3)})`, canvasX, offset.y + 35);
+        });
+    }
+
+    function updateTable() {
+        tableBody.innerHTML = "";
+        points.forEach(p => {
+            let row = `<tr>
+                <td style="color:${p.color}; font-weight:bold">${p.name}</td>
+                <td>${formatLabel(p.x, 3)}</td>
+                <td><div style="background:${p.color}; width:20px; height:20px; margin:auto; border-radius:50%"></div></td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+
+        if (points.length >= 2) {
+            let p1 = points[points.length - 2];
+            let p2 = points[points.length - 1];
+            let dist = Math.abs(p1.x - p2.x);
+            distanceDisplay.innerText = `Расстояние ${p1.name}${p2.name} = ${formatLabel(dist, 3)}`;
+        } else {
+            distanceDisplay.innerText = "";
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        let stepPower = Math.floor(Math.log10(100 / zoom));
+        let majorStep = Math.pow(10, stepPower);
+        let minorStep = majorStep / 10;
+
+        drawLines(minorStep, false);
+        drawLines(majorStep, true);
+        
+        // Ось
+        ctx.beginPath(); ctx.strokeStyle = "#000"; ctx.lineWidth = 2;
+        ctx.moveTo(0, offset.y); ctx.lineTo(width, offset.y); ctx.stroke();
+
+        drawPoints();
+        requestAnimationFrame(draw);
+    }
+
+    canvas.addEventListener('click', e => {
+        if (points.length >= 10) return;
+        
+        // Вычисляем координату клика в "мире" чисел
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const worldX = (mouseX - offset.x) / zoom;
+
+        points.push({
+            x: worldX,
+            name: pointNames[points.length],
+            color: pointColors[points.length]
+        });
+        updateTable();
+    });
+
+    window.addEventListener('wheel', e => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+        const worldX = (mouseX - offset.x) / zoom;
+        zoom *= zoomFactor;
+        offset.x = mouseX - worldX * zoom;
+    }, { passive: false });
+
+    window.addEventListener('mousedown', e => { isDragging = true; lastMouseX = e.clientX; });
+    window.addEventListener('mousemove', e => {
+        if (isDragging) {
+            offset.x += e.clientX - lastMouseX;
+            lastMouseX = e.clientX;
+        }
+    });
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('resize', init);
+
+    init();
+
+
+
+    // Важное уточнение для шаблона:
+    function init() {
+        const container = document.getElementById('microscope-container');
+        width = canvas.width = container.clientWidth - 40; // Адаптивно под ваш main-frame
+        height = canvas.height = 250; 
+        zoom = width / 11; 
+        offset.x = width / 2;
+        offset.y = height / 2;
+        draw();
+    }
+    // ... остальной код ...
+</script>
+</body>
+</html>

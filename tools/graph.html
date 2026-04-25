@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Function Grapher</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background:#f5f7fb;
+        font-size: 14px;
+    }
+
+    canvas {
+        background:white;
+        border:1px solid #ccc;
+        margin-top:10px;
+    }
+
+    input {
+        padding:4px;
+        font-size:13px;
+        width:25px;
+    }
+
+    button {
+        padding:3px 10px;
+        font-size:14px;
+        margin-left:5px;
+        cursor:pointer;
+    }
+
+    button {
+		background: #e8f1fa;       /* светлее и голубее */
+		border: 1px solid #8fb3cc; /* темнее рамка */
+		border-radius: 8px;
+        transition: 0.2s;    
+		background: linear-gradient(#eef6fd, #dbeaf7);
+		border: 1px solid #7aa6c2;
+    }
+
+    button:hover {
+        background: #d3e6f7;
+    }
+
+
+.func-buttons {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    gap: 5px;
+    margin-top: 5px;
+    justify-content:center;
+}
+
+.func-buttons button {
+    padding: 3px;
+    font-size: 13px;
+    cursor: pointer;
+}
+	
+
+
+	.calc-panel {    margin-bottom:20px;}
+
+.calc-buttons button {
+    margin:5px;
+    padding:6px 9px;
+    cursor:pointer;
+	transition: 0.2s;
+}
+
+#calcHistory {
+    list-style:none;
+    padding:0;
+    max-height:150px;
+    overflow-y:auto;
+}
+
+#calcHistory li {
+    background:#E8F7FC;
+    margin:3px 0;
+    padding:3px;
+    font-size:10px;
+    color:#8AA5B6;
+}
+	
+	.main-layout {
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    align-items:flex-start;
+}
+
+.math-help {
+    width:500px;
+    color:#777;
+    font-size:10px;
+    text-align:left;
+    justify-content:center;
+}
+
+.math-help h4 {color:#555;    margin-bottom:8px;}
+.math-help p {margin:4px 0;}
+
+/* ===== Result Layout ===== */
+
+.result-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.result-text {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ===== Scientific Button ===== */
+
+.sci-button {
+    padding: 4px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    background: #eef3fa;
+    border: 1px solid #cfd8e3;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sci-button:hover {
+    background: #dfe9f7;
+}
+
+/* ===== Scientific Output Box ===== */
+
+.scientific-box {
+margin: 12px auto 0 auto;
+    padding: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    background: #FFF8E7;   /* магнолия */
+    /*border: 1px solid #E6D8B5;*/
+	border: 1px solid #666666;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+	width:250px;
+    border-radius: 8px;
+    display: none;         /* скрыто по умолчанию */
+	justify-content:center;
+}
+
+.calc-wrapper {
+    width: 900px;
+    margin: 30px auto;
+    background: #c7d9e4;
+    border: 1px solid #d9e2ec;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="calc-wrapper">
+
+<h2>🧮 Calculator</h2>
+<div class="calc-panel">
+    <div class="calc-buttons">
+    <i>x = </i><input style="width:220px;" id="calcInput" placeholder="Enter argument">
+        <button onclick="calculate()"><b>Calculate</b></button>  
+        <button onclick="deleteLast()">←</button>      
+        <button onclick="clearCalc()">Clear</button>
+    </div>
+
+	<div class="func-buttons">
+    <!-- числа -->
+    <button onclick="insertFunc('1')">1</button>
+    <button onclick="insertFunc('2')">2</button>
+    <button onclick="insertFunc('3')">3</button>
+    <button onclick="insertFunc('4')">4</button>
+    <button onclick="insertFunc('5')">5</button>
+
+    <button onclick="insertFunc('6')">6</button>
+    <button onclick="insertFunc('7')">7</button>
+    <button onclick="insertFunc('8')">8</button>
+    <button onclick="insertFunc('9')">9</button>
+    <button onclick="insertFunc('0')">0</button>
+
+    <button onclick="insertFunc('+')">+</button>
+    <button onclick="insertFunc('-')">−</button>
+    <button onclick="insertFunc('*')">×</button>
+    <button onclick="insertFunc('/')">÷</button>
+    <button onclick="insertFunc('^')">^</button>
+
+    <button onclick="insertFunc('Math.E')">e</button>
+    <button onclick="insertFunc('Math.PI')">π</button>
+    <button onclick="insertFunc('(')">(</button>
+    <button onclick="insertFunc(')')">)</button>  
+    <button onclick="insertFunc('.')">.</button>
+  
+    <!-- функции -->
+    <button onclick="wrapCalc('(', ')^2')">x<sup>2</sup></button>
+    <button onclick="wrapCalc('(', ')^3')">x<sup>3</sup></button>
+    <button onclick="wrapCalc('1/(')">1/x</button>
+    <button onclick="wrapCalc('sqrt(')">√x</button>
+    <button onclick="wrapRoot(3)">∛x</button>
+
+    
+    <button onclick="wrapCalc('abs(')">abs</button>
+    <button onclick="wrapCalc('exp(')">exp</button>
+    <button onclick="wrapCalc('log(')">ln</button>
+    <button onclick="wrapCalc('log10(')">lg</button>
+    <button onclick="negateCalc()">/-/</button>
+    </div>
+
+    <div class="func-buttons" style="grid-template-columns: repeat(8, 50px);">
+    <button onclick="wrapCalc('sin(')">sin</button>
+    <button onclick="wrapCalc('cos(')">cos</button>
+    <button onclick="wrapCalc('tan(')">tan</button>
+    <button onclick="wrapCalc('asin(')">asin</button>
+    <button onclick="wrapCalc('acos(')">acos</button>
+    <button onclick="wrapCalc('atan(')">atan</button>
+	<button onclick="toDeg()">deg</button>
+	<button onclick="toRad()">rad</button>
+    </div>    
+    <div class="func-buttons" style="grid-template-columns: repeat(6, 50px);">
+    <button onclick="wrapCalc('sinh(')">sh</button>
+    <button onclick="wrapCalc('cosh(')">ch</button>
+    <button onclick="wrapCalc('tanh(')">th</button>
+    <button onclick="wrapCalc('asinh(')">ash</button>
+    <button onclick="wrapCalc('acosh(')">ach</button>
+    <button onclick="wrapCalc('atanh(')">ath</button>
+    </div>
+
+
+	<div class="result-row">
+		<div id="calcResult" class="result-text"></div>
+		<!--<button id="scientificBtn" class="sci-button" onclick="showScientific()"><b>Scientific</b></button>-->
+	</div>
+	<div id="scientificBox" class="scientific-box"></div>
+
+
+    <h4>History</h4>
+    <ul id="calcHistory"></ul>
+	</div>
+</div> <!-- cаlculator-->
+
+<br/><br/><hr/><br/><br/>
+
+
+
+
+
+
+<div class="calc-wrapper">
+	<h2>📈 Function Grapher</h2>
+
+
+		<!--<div class="calc-buttons">
+		<i>x<sub>min</sub>= <input id="xmin" value="-10"> &nbsp; 
+		x<sub>max</sub>= <input id="xmax" value="10"> &nbsp; 
+		step = <input id="step" value="0.1"></i>
+        <button style= "width: 120px;" onclick="getTable()"><i>Get Table</i></button> 
+        </div>-->
+
+
+		<div class="calc-buttons">   
+		<i>f(x)= </i><input style="width:250px;" id="funcInput" placeholder="Enter function - Example: x^2 or sin(x)">
+		<button onclick="draw()"><b> Draw </b></button> 
+		<button onclick="deleteLast()">←</button> 
+		<button onclick="clearFunc()"> Clear </button>
+        <br/><button style= "width: 120px;" onclick="insertFunc('x')"><i>X</i></button> 
+
+		</div>
+	
+
+
+	<div class="func-buttons">
+    <!-- числа -->
+    <button onclick="insertFunc('1')">1</button>
+    <button onclick="insertFunc('2')">2</button>
+    <button onclick="insertFunc('3')">3</button>
+    <button onclick="insertFunc('4')">4</button>
+    <button onclick="insertFunc('5')">5</button>
+    <button onclick="insertFunc('6')">6</button>
+    <button onclick="insertFunc('7')">7</button>
+    <button onclick="insertFunc('8')">8</button>
+    <button onclick="insertFunc('9')">9</button>
+    <button onclick="insertFunc('0')">0</button>
+
+    <button onclick="insertFunc('+')">+</button>
+    <button onclick="insertFunc('-')">−</button>
+    <button onclick="insertFunc('*')">*</button>
+    <button onclick="insertFunc('/')">/</button>
+    <button onclick="insertFunc('^')">^</button>
+	
+	<button onclick="insertFunc('sqrt(')">√</button>
+    <button onclick="insertFunc('abs(')">abs</button>
+	<button onclick="insertFunc('x^2')">x<sup>2</sup></button>
+    <button onclick="insertFunc('x^3')">x<sup>3</sup></button>
+    <button onclick="insertFunc('1/x')">1/x</button>
+
+	
+	
+
+    <!-- функции -->
+    <button onclick="insertFunc('exp(')">exp</button>
+    <button onclick="insertFunc('log(')">log</button>
+    <button onclick="insertFunc('log10(')">log10</button>
+	<button onclick="insertFunc('Math.E')">e</button>
+    <button onclick="insertFunc('Math.PI')">π</button>
+	
+	<button onclick="insertFunc('rad(')">rad</button>
+    <button onclick="insertFunc('deg(')">deg</button>
+    <button onclick="insertFunc('(')">(</button>
+    <button onclick="insertFunc(')')">)</button>  
+    <button onclick="insertFunc('.')">.</button>
+   
+	 </div>    
+    <div class="func-buttons" style="grid-template-columns: repeat(6, 50px);">
+	<button onclick="insertFunc('sin(')">sin</button>
+    <button onclick="insertFunc('cos(')">cos</button>
+    <button onclick="insertFunc('tan(')">tan</button>
+    <button onclick="insertFunc('sinh(')">sinh</button>
+    <button onclick="insertFunc('cosh(')">cosh</button>
+    <button onclick="insertFunc('tanh(')">tanh</button>
+	
+	<button onclick="insertFunc('asin(')">asin</button>
+    <button onclick="insertFunc('acos(')">acos</button>
+    <button onclick="insertFunc('atan(')">atan</button>
+    <button onclick="insertFunc('asinh(')">asinh</button>
+    <button onclick="insertFunc('acosh(')">acosh</button>
+    <button onclick="insertFunc('atanh(')">atanh</button>
+
+	</div>
+
+   
+
+
+	<p><button onclick="clearCanvas()">Clear Canvas</button></p>
+
+
+	<canvas id="canvas" width="900" height="600"></canvas>
+
+	
+    <div class="math-help">
+        <h4>Available Functions</h4>
+        <p><b>Basic:</b> +, −, *, /, ^</p>
+        <p><b>Trigonometry (radians):</b> sin(x), cos(x), tan(x)</p>
+        <p><b>Exponential & Log:</b> exp(x), log(x), log10(x)</p>
+        <p><b>Other:</b> sqrt(x), abs(x)</p>
+        <p><b>Constants:</b> π, e</p>
+        <p><b>Examples:</b> sin(x), exp(-x/5)*sin(3*x), 1/(1+exp(-x))</p>
+    </div>
+</div> <!--grapher-->
+
+
+
+
+
+<script src="script/graph.js"></script>
+</body>
+</html>
