@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Математическая площадка YarnTale - Время историй © OliSoft 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive mathematical playground: Storytime.">
+<meta name="author" content="OliSoft">
+<link rel="stylesheet" href="story.css">
+<link rel="icon" type="image/png" href="images/ytmath_icon.png">
+<style>
+
+  .fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1;
+    margin: 0 2px;
+  }
+  .fraction > span {
+    display: block;
+    padding: 0 0.1em;
+  }
+  .fraction span.numerator {
+    border-bottom: 1px solid;
+  }
+
+  .story {
+  display: block;
+  margin: 20px auto;   /* центрирование и отступы сверху/снизу */
+  max-width: 600px;    /* желаемая ширина */
+  width: 100%;         /* чтобы на маленьких экранах уменьшалось */
+  height: auto;    }   
+
+  .number-card {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  border: 1px solid #336633;
+  background: linear-gradient(    135deg,    #eef7ef,    #f4f4f4,    #f7eef1  );
+  border-radius: 18px;
+  box-shadow:    0 6px 14px rgba(0,0,0,0.08);
+}
+
+.number-section {  margin: 30px 0;  text-align: center;}
+.number-title {  font-size: 38px;  font-weight: bold;  margin-bottom: 12px;}
+.natural {  color: #1f7a5a;}
+.integer {  color: #2f5fb3;}
+.rational {  color: #b31234;}
+.number-line {  font-size: 34px;  font-weight: bold;}
+.sub-line {  font-size: 24px;  margin-top: 8px;  color: #2f5fb3;}
+.sub-left {  float: left;}
+.sub-right {  float: right;}
+.clear {  clear: both;} 
+
+</style>
+</head>
+
+<body>
+<!-- ===== HEADER ===== -->
+<div class="main-title">
+<img src="images/ytmath_logo.png">
+Математическая площадка YarnTale
+</div>
+
+    <div class="lang-switch">
+    <a href="whole_en.html">EN</a>
+    <a href="whole_ru.html">RU</a>
+    <a href="whole_de.html">DE</a>
+   </div>
+  
+<!-- ===== NAV MENU ===== -->
+<div class="link-grouph">
+<a class="link-buttonh" href="https://studioyarntale.github.io/yt/" target="_blank">🏡YarnTale</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/" target="_blank">🧮Математическая площадка</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/" target="_blank">📖Время историй</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/mathmap_ru.html" target="_blank">🎓Математическая школа</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/quiz/" target="_blank">❓Вопросы и викторины</a>
+</div>
+<br/>
+
+
+<!-- ===== MAIN FRAME ===== -->
+<div class="main-wrapper">
+<div class="content-area">
+
+
+<h1>Сказка о том, какие бывают числа</h1>
+
+<p>В один тихий вечер Настенька сидела на крылечке, а рядом устроились Лиуми и Пиппа.
+</p><p>Пиппа держала в лапках дудочку, но играть не спешила — она смотрела на странные знаки, которые Настенька выводила в своей тетрадке. Она решала примеры по математике.
+<br/>— Это что, буквы? — спросила Пиппа.
+<br/>— Нет, — улыбнулась Настенька. — Это <b>ЦИФРЫ</b>. Они как ноты: каждая сама по себе — просто знак.
+<br/>— А вот это? — Лиуми показал на длинную запись: 2316.72.
+<br/>— А это уже <b>ЧИСЛО</b>, — сказала Настенька. — Цифры собрались вместе, чтобы записать число, как буквы собираются в слова, а ноты — в мелодию.
+</p><img class="story" src="images/digit.jpg" alt="Number and digit"/>
+
+<p>Пиппа кивнула:
+<br/>— Как в музыке. Одна нота — звук, а много нот — песня.</p>
+<h2>Натуральные числа — когда мы считаем орешки</h2>
+<p>Настенька высыпала горсть орешков.
+<br/>— Раз, два, три… — пересчитывал Лиуми.
+<br/>— Это <b>НАТУРАЛЬНЫЕ ЧИСЛА</b>, — сказала Настенька. — Те, что мы используем, когда считаем предметы. Они помогают нам считать то, что можно потрогать, то, что есть. Они <b>положительные</b> и живут справа от нуля на числовой оси.
+</p><img class="story" src="images/count.jpg" alt="Natural Number"/><p>
+<br/>— Но бывают и другие числа, — добавила она. — Например, <b>отрицательные</b>. И они совсем не «плохие». Их ты увидишь на числовой оси слева от нуля.
+<br/>— Я уже знаю! — закричал Лиуми.</p>
+<h2>Отрицательные числа — это когда становится холодно</h2>
+<p>Пиппа поёжилась.
+<br/>— Да, зимой бывает холодно, минус пять, минус десять…
+<br/>— Вот именно, — кивнула Настенька. — Отрицательные числа показывают, что чего-то стало меньше нуля. Как температура, когда мороз.
+</p><img class="story" src="images/cold.jpg" alt="Negative Number"/><p>
+<br/>— А ещё, — вспомнил Лиуми, — когда я одолжил у тёти Поли три орешка — это тоже минус! Потому что я должен буду их отдать.
+<br/>— Да, — засмеялась Настенька. — Ты ушёл в «долг», в отрицательное число.
+</p>
+<img class="story" src="images/debt.jpg" alt="Negative Number"/>
+
+<p>Целые числа — вместе и плюсы, и минусы:
+<br/>— Натуральные и отрицательные — это всё <b>ЦЕЛЫЕ</b> числа, — объяснила Настенька. — Они как дорога: вправо идут положительные, влево — отрицательные, а посередине стоит <b>НОЛЬ</b>.
+</p>
+
+
+<h2>Дробные числа — когда делим пирог</h2>
+
+<p>Настенька принесла и поставила на стол пирог.
+<br/>— Если разделить его на троих — каждый получит одну треть, дробь 1/3.
+</p><img class="story" src="images/pie.jpg" alt="Negative Number"/>
+<p>
+<br/>— А если на двоих? — спросила Пиппа.
+<br/>— Тогда кусочек будет 1/2.
+<br/>— А если на четверых? — Лиуми наклонился ближе.
+<br/>— Ну сам догадайся, — улыбнулась Пиппа. — То, на сколько частей мы разделили, называется «знаменателем», и мы пишем его внизу, а то, сколько частей возьмём, называется «числителем», и он вверху — вот так 1/4.
+</p><img class="story" src="images/fraction.jpg" alt="Fraction"/><p>
+
+<br/>— А на столе сколько осталось? — спросила Настенька.
+<br/>— Три кусочка! Значит, это 3/4! — быстро ответил Лиуми.
+<br/>— Всё правильно, — улыбнулась Настенька.
+<br/>— Постойте, — тихонько сказала Пиппа и положила на стол маленький детский калькулятор. — Если пирог разделить на двоих, то калькулятор показывает 0.5. А если на четверых, то он показывает 0.25. Неужели мой калькулятор сломался?
+</p><img class="story" src="images/025.jpg" alt="Decimal Fraction"/><p>
+<br/>— Нет-нет, Пиппа, твой калькулятор не сломался, не бойся. Калькулятор показывает нам десятичные дроби. Это такие дроби, в знаменателе которых стоит 10, или 100, или 1000, или ещё больше. Просто так удобно.
+<br/>— Смотри, — продолжила Настенька, — если я возьму и разрежу пирог на 10 частей, то половинка пирога будет 5 кусочков, или 5/10. Значит, 1/2 = 5/10 = 0.5. Вот это и показал калькулятор.
+<br/>— А четыре кусочка? — спросил Лиуми.
+<br/>— Тоже можно, — улыбнулась Настенька, — но здесь мне придётся делить пирог на 100 частей и взять 25 этих крошечных кусочков. Это долго, я не стану резать пирог, просто поверь мне. Но если хочешь, проверь сам — раздели на 100 частей вот эту бумажную ленту и раздели кусочки на четверых. У каждого окажется по 25 отрезков.
+</p><p>1/4 = 25/100, что записывается 0.25 — это тоже десятичная дробь.
+<br/>— Но не всякую дробь можно записать как десятичную точно, — добавила Настенька. — Например, 1/3. Если 1/3 попробовать записать десятичной дробью, то она окажется бесконечно длинной. Вот попробуй сосчитать на калькуляторе: 
+</p><p><b>
+1/3 = 0.333333333333333333333333333333333333333333333333333333333333… и так далее. 
+</b></p><p>
+Она никогда не закончится! Или 
+<br/><b>7/9 = 0.7777777777777777777777777777777777777… и так далее </b>
+<br/>— Но такая точность нам не нужна, — сказала Настенька. — Поэтому мы можем записать дробь приближённо: 1/3 ≈ 0.333, или 1/3 ≈ 0.33, или даже 1/3 ≈ 0.3. Это называется <b>«округлить число»</b>. Посмотри, знак равно стал волнистым — это значит, что это его приближённое значение. Это удобно.
+<br/>— Вот давай теперь повторим, какие числа мы уже знаем: <b>натуральные, целые, дробные</b>. Все вместе их называют <b>РАЦИОНАЛЬНЫМИ</b>.
+</p>
+<!--<img class="story" src="images/number_ru.jpg" alt="Numbers"/>-->
+<div class="number-card">
+  <div class="number-section">
+  <div class="number-title natural">Натуральные числа</div>
+  <div class="number-line">1, 2, 3 ... 13, 127, 1000</div>
+  </div>
+
+  <div class="number-section">
+  <div class="number-title integer">Целые числа</div>
+  <div class="number-line">-10, -5, -1, 0, 2, 3, 100</div>
+    <div class="sub-line">
+    <span class="sub-left">отрицательные</span>
+    <span class="sub-right">положительные</span>
+    <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="number-section">
+    <div class="number-title rational">Рациональные числа</div>
+    <div class="number-line">-3, -1, -1/2, 0, 1/3, 0.5, 2</div>
+  </div>
+</div>
+<p>
+</p><p>Пиппа поморщилась:
+<br/>— Это всё так сложно, столько названий…
+</p><p>Но Лиуми перебил её:
+<br/>— Нет, Пиппа, это же интересно и очень полезно знать. Вот теперь я могу так просто рисовать эти дроби на числовой оси, сравнивать их. Просто так удобно.
+</p><p>Лиуми достал тетрадку, в которой он рисовал числовую ось и ставил на ней числа, и добавил несколько новых точек, аккуратно подписав их.</p>
+
+
+<div class="number-card">
+<div class="number-section">
+<div class="number-title natural">Natural Numbers</div>
+<div class="number-line">1, 2, 3 ... 13, 127, 1000</div>
+</div>
+<div class="number-section">
+<div class="number-title integer">Integer Numbers</div>
+<div class="number-line">-10, -5, -1, 0, 2, 3, 100</div>
+<div class="sub-line">
+<span class="sub-left">negative</span>
+<span class="sub-right">positive</span>
+<div class="clear"></div>
+</div>
+</div>
+<div class="number-section">
+<div class="number-title rational">Rational Numbers</div>
+<div class="number-line">-3, -1, -1/2, 0, 1/3, 0.5, 2</div>
+</div>
+</div>
+
+
+<div class="number-card">
+<div class="number-section">
+<div class="number-title natural">Natürliche Zahlen</div>
+<div class="number-line">1, 2, 3 ... 13, 127, 1000</div>
+</div>
+<div class="number-section">
+<div class="number-title integer">Ganze Zahlen</div>
+<div class="number-line">-10, -5, -1, 0, 2, 3, 100</div>
+<div class="sub-line">
+<span class="sub-left">negative</span>
+<span class="sub-right">positive</span>
+<div class="clear"></div>
+</div>
+</div>
+<div class="number-section">
+<div class="number-title rational">Rationale Zahlen</div>
+<div class="number-line">-3, -1, -1/2, 0, 1/3, 0.5, 2</div>
+</div>
+</div>
+
+
+
+
+
+
+</div> <!--content-area-->
+
+
+
+
+</div><!--main-wrapper-->
+<div class="olisoft-footer">2026 © OliSoft — Математическая площадка YarnTale</div>
+</body>
+</html>
