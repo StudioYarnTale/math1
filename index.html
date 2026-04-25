@@ -30,6 +30,8 @@
             margin-top:-20px;
             text-align: center;
         }
+        h2{ color: #78AFAC;
+            font-size: 18px;}
         .main-wrapper {
             background: #ffffff;
             border: 1px solid #78AFAC;
@@ -44,14 +46,18 @@
 
 
 .links-panel {
-    max-width: 700px;
-    width: 300px;
+    max-width: 900px;
+    width: 100%;
     margin: auto;
-    padding: 30px;
-      padding-top: 10px;
+    padding: 10px;
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 .link-group {
     margin-bottom: 10px;
+
 }
 .group-title {
     font-size: 22px;
@@ -63,7 +69,7 @@
     display: block;
     margin: 5px auto;
     padding: 5px 18px;
-    width: 200px;
+    width: 170px;
     background: #ffffff;
     border: 1px solid #c7dede;
     border-radius: 12px;
@@ -97,53 +103,85 @@
 
 <div class="title"><img src="images/ytmath_logo.png" style="width:90px; margin-bottom:-20px; margin-left:-30px; margin-right:-5px;"/>YarnTale Math Playground</div>
 <div class="main-wrapper">
+
 <div class="container links-panel">
+
+
+<!-- Storytime -->
+<div class="link-group">
+<div class="group-title">📖 Storytime</div>
+<a class="link-button" href="storytime/index.html" target="_blank">📖 Math Story</a>
+<a class="link-button" href="storytime/people_en.html" target="_blank">YarnTale World</a>
+<a class="link-button" href="storytime/mathmap_en.html" target="_blank">Mathematical Map</a>
+<a class="link-button" href="storytime/dictionary.html" target="_blank">Dictionary</a>
+<a class="link-button" href="storytime/math_en.html" target="_blank">What Is Mathematics?</a>
+<a class="link-button" href="storytime/01_en.html" target="_blank">Zero 🌹 One</a>
+<a class="link-button" href="storytime/whole_en.html" target="_blank">Kingdom of Numbers</a>
+<a class="link-button" href="storytime/fraction_en.html" target="_blank">Fraction Debate</a>
+<a class="link-button" href="storytime/number_ru.html" target="_blank">What is Number?</a>
+<a class="link-button" href="storytime/pi_ru.html" target="_blank">More Numbers</a>
+<a class="link-button" href="storytime/write_ru.html" target="_blank">History of Numbers</a>
+<a class="link-button" href="storytime/count1_ru.html" target="_blank">The Laws of the Number Kingdom</a>
+<a class="link-button" href="storytime/contact_en.html" target="_blank">Contact Us</a>
+</div>
+
+
 <!-- Math tools -->
 <div class="link-group">
 <div class="group-title">🧮 Math Tools</div>
-<a class="link-button" href="storytime/index.html" target="_blank">📖 Math Story</a>
-<a class="link-button" href="calculator.html" target="_blank">➕ Calculator</a>
-<a class="link-button" href="kidscalc.html" target="_blank">🧸 Kids Calculator</a>
-<a class="link-button" href="abacus.html" target="_blank">🧮 Abacus</a>
-<a class="link-button" href="scales.html" target="_blank">🍎 Fruit Scales</a>
-<a class="link-button" href="equation.html" target="_blank">📐 Equation</a>
-<a class="link-button" href="function.html" target="_blank">📈 Function</a>
-<a class="link-button" href="graph.html" target="_blank">📊 Grapher</a>
-<a class="link-button" href="canvas.html" target="_blank">🎨 Canvas</a>
-<a class="link-button" href="analytic.html" target="_blank">🔍 Function Analysis</a>
+<a class="link-button" href="tools/calculator.html" target="_blank">➕ Calculator</a>
+<a class="link-button" href="tools/kidscalc.html" target="_blank">🧸 Kids Calculator</a>
+<a class="link-button" href="tools/abacus.html" target="_blank">🧮 Abacus</a>
+<a class="link-button" href="tools/scales.html" target="_blank">🍎 Fruit Scales</a>
+<a class="link-button" href="tools/equation.html" target="_blank">📐 Equation</a>
+<a class="link-button" href="tools/function.html" target="_blank">📈 Function</a>
+<a class="link-button" href="tools/graph.html" target="_blank">📊 Grapher</a>
+<a class="link-button" href="tools/canvas.html" target="_blank">🎨 Canvas</a>
+<a class="link-button" href="tools/analytic.html" target="_blank"> 📈Function Analysis</a>
+<a class="link-button" href="tools/math_micro.html" target="_blank">🔍 Math Microscope</a>
 <a class="link-button" href="quiz/match.html" target="_blank">🧩 Match Quiz</a>
 <a class="link-button" href="quiz/quiz.html" target="_blank">❓ Quiz</a>
 <a class="link-button" href="quiz/slider.html" target="_blank">🖼 Picture Slider</a>
-<a class="link-button" href="storytime/mathmap_en.html" target="_blank">📬 Math Map</a>
-<a class="link-button" href="storytime/dictionary.html" target="_blank">📬 Math Dictionary</a>
-<a class="link-button" href="storytime/contact_en.html" target="_blank">📬 Contact</a>
 </div>
 
-<!-- Main sites -->
+<!-- YarnTale -->
 <div class="link-group">
-<div class="group-title">🌍 Main Sites</div>
-<a class="link-button" href="https://StudioYarnTale.github.io/yt/" target="_blank">📖 YarnTale</a>
-<a class="link-button" href="https://yarntale.my1.ru/index.html" target="_blank">🌐 YarnTale uCoz</a>
+<div class="group-title">Yarntale</div>
+<a class="link-button" href="https://StudioYarnTale.github.io/yt/" target="_blank">YarnTale</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/tales_en.html" target="_blank">Tales</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/gallery_en.html" target="_blank">Characters</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/tales_en.html" target="_blank">Characters</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/peep_en.html" target="_blank">Peep's Adventure</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/ball_en.html" target="_blank">Brocken Window</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/phil_en.html" target="_blank">Road Home</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/guest_en.html" target="_blank">Long-Awaited Guest</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/web_en.html" target="_blank">Webbed Tale</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/visitor_en.html" target="_blank">Visitor Out of Time</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/task_en.html" target="_blank">First Assignment </a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/crime_en.html" target="_blank">Detective Story</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/crow_en.html" target="_blank">Fateful Discovery</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/trip_ru.html" target="_blank">Journey Through Time</a>
+</div>
+
+<!-- Crochet -->
+<div class="link-group">
+<div class="group-title">Crochet</div>
+<a class="link-button" href="https://studioyarntale.github.io/yt/school_en.html" target="_blank">Crochet School</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/mk_en.html" target="_blank">Master-Class</a>
+<a class="link-button" href="https://studioyarntale.github.io/crochet/" target="_blank">Crochet</a>
+<h2>🌍 Main Sites</h2>
 <a class="link-button" href="https://yarntale.wixsite.com/home" target="_blank">🧱 YarnTale Wix</a>
-</div>
-
-<!-- Crochet & Math -->
-<div class="link-group">
-<div class="group-title">🧶 Projects</div>
-<a class="link-button" href="https://studioyarntale.github.io/math1/" target="_blank"> 🧮 Math GitHub</a>
-<a class="link-button" href="https://studioyarntale.github.io/crochet/" target="_blank">🧶 Crochet</a>
+<a class="link-button" href="https://yarntale.my1.ru/index.html" target="_blank">🌐 YarnTale uCoz</a>
 <a class="link-button" href="https://yarntale.my1.ru/crochet/index.html" target="_blank">🧶 Crochet uCoz</a>
 <a class="link-button" href="https://yarntale.my1.ru/math1/index.html" target="_blank">🧮 Math uCoz</a>
-</div>
-
-<!-- Admin tools -->
-<div class="link-group">
-<div class="group-title">⚙ Admin Tools</div>
+<h2>⚙ Admin Tools</h2>
 <a class="link-button" href="https://github.com/dashboard" target="_blank">🐙 GitHub Dashboard</a>
 <a class="link-button" href="https://yarntale.my1.ru/panel/?a=fm" target="_blank">📁 uCoz File Manager</a>
 <a class="link-button" href="https://yarntale.my1.ru/panel/?a=tmpl&m=2&t=0" target="_blank">🧾 uCoz HTML Editor</a>
 <a class="link-button" href="https://editor.wix.com/" target="_blank">🧱 Wix Editor</a>
 </div>
+
+
 </div><!-- container -->
 </div><!-- main-wrapper -->
 
