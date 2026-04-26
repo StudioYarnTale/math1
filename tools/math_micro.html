@@ -2,8 +2,12 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<title>YT Maths Playground © OliSoft 2026</title>
+<title>YT Maths Playground © OliSoft 2026  Number Line Microscope</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive mathematical playground: calculator, function grapher, geometry tools.">
+<meta name="author" content="OliSoft">
 <link rel="stylesheet" href="math.css">
+<link rel="icon" type="image/png" href="images/ytmath_icon.png">
 <style>
     /* Стили специально для микроскопа внутри вашего шаблона */
     #microscope-container {
@@ -14,11 +18,13 @@
     }
     canvas { 
         background: #fff; 
-        box-shadow: 0 0 15px rgba(0,0,0,0.1); 
-        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        border-radius: 16px;
+        background: #ffffff;
         cursor: crosshair; 
         width:900px;
     }
+
     #controls { 
         margin-top: 20px; 
         background: white; 
@@ -28,9 +34,146 @@
         max-width: 900px;
         color: #333;
     }
+
+    .micro {
+        width: 900px;
+        border-radius: 18px;  /* Скругление */
+        border: 1px solid #78AFAC;  /* Тонкая обводка в цвет страницы */
+        /* Мягкий фон вокруг картинки (если появятся прозрачные края) */
+        background-color: #f8fbfb;
+        /* Внутренний отступ — создаёт эффект "карточки" */
+        padding: 0px;
+        /* Нежная тень */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        /* Чтобы тень выглядела красиво */
+        display: block;
+        /* Центрирование картинки */
+        margin: 20px auto;
+    }
+
+.title1 {font-size:26px; color:#78AFAC; margin-top:20px; margin-bottom: 0px;}
+
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
     .distance-info { margin-top: 15px; font-weight: bold; color: #d32f2f; font-size: 1.2em; }
+
+.division-label {
+    font-weight: bold;
+    color: #4a6741;
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    background: #e8f4f3;
+    border: 1px solid #78AFAC;
+    display: inline-block;
+}
+
+
+.point-input-panel {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 12px;
+    background: #e8f4f3;
+    border: 1px solid #78AFAC;
+}
+
+.operation-panel input,
+.point-input-panel input {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #78AFAC;
+    width: 160px;
+    margin: 0 6px;
+}
+
+.point-input-panel button {
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #78AFAC;
+    background: #d7ecea;
+    cursor: pointer;
+}
+
+/* Наведение */
+.point-input-panel button:hover,
+.clear-btn:hover {background: #c7e3e0;}
+/* Нажатие */
+.point-input-panel button:active,
+.clear-btn:active { background: #b5dad6;}
+
+
+.math-hint {
+    padding: 10px;
+    border-radius: 14px;
+    background: #ffffcc;
+    border: 2px solid #78AFAC;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #7a4b00;
+}
+.math-result {
+    margin-top: 6px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    background: #eef7f6;
+    border: 1px solid #78AFAC;
+    font-weight: bold;
+    color: #2f4f4f;
+}
+.math-result-inline { white-space: nowrap;}
+
+.operation-panel {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 12px;
+    background: #e8f4f3;
+    border: 1px solid #78AFAC;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.operation-panel button:hover {background: #c7e3e0;}
+.point-input-panel button:hover {background: #c7e3e0;}
+
+.operation-panel button,
+.point-input-panel button,
+.clear-btn {
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid #78AFAC;
+    background: #d7ecea;
+    color: #2f4f4f;
+    font-family: "Comic Sans MS", Cambria, Arial, sans-serif, cursive;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+/* Наведение */
+.operation-panel button:hover,
+.point-input-panel button:hover,
+.clear-btn:hover {background: #c7e3e0;}
+/* Нажатие */
+.operation-panel button:active,
+.point-input-panel button:active,
+.clear-btn:active { background: #b5dad6;}
+
+
+#microscope {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #78AFAC;
+    box-shadow:        0 6px 14px rgba(0,0,0,0.12);
+    cursor: crosshair;
+    width: 900px;
+    margin: 15px 0;
+}
+
+.distance-info { color: white; font-size: 1px;}
+
+
 </style>
 </head>
 <body>
@@ -39,24 +182,67 @@
     <img src="images/ytmath_logo.png">
     YarnTale Math Playground
 </div>
+<!-- ===== NAV MENU ===== -->
+<div class="link-grouph">
+<a class="link-buttonh" href="https://studioyarntale.github.io/yt/" target="_blank">🏡YarnTale</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/" target="_blank">🧮Math Playground</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/" target="_blank">📖Story Time</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/mathmap_en.html" target="_blank">🎓Math School</a>
+<a class="link-buttonh" href="https://studioyarntale.github.io/math1/quiz/" target="_blank">❓Questions and Quizzes</a>
+</div>
+<div class="title1" >
+    <b>Number Line Microscope</b>
+</div>
 
-<div class="link-grouph">    <a class="link-buttonh" href="...">🏡YarnTale</a>    </div>
+<img class="micro"  src="images/micro/micro6.jpg"/>
+
+<div class="math-hint">
+<span style="color:#cc0000; font-size: 22px;">Positive number (+) — move right → </span> &nbsp; &nbsp; &nbsp;  &nbsp; 
+<span style="color:#0000cc; font-size: 22px;">Negative number (—) — move left ← </span>
+</div>
+
+<!--<div class="operation-panel">
+    Start: <input type="number" id="startInput" value="0">
+    Add:    <input type="number" id="deltaInput" value="1">
+    <button id="runBtn" class="control-btn"> Move </button>
+</div>
+<div id="moveResult" class="math-result"></div>-->
+
+
 
 
 
 
 <div class="main-frame">
     <div id="microscope-container">
-        <canvas id="microscope"></canvas>
+  
+  <div class="operation-panel">
+    <label>Start:</label>
+    <input type="number" id="startInput" value="0">
+    <label>Add:</label>
+    <input type="number" id="deltaInput" value="1">
+    <button id="runBtn" class="control-btn">Move</button>
+<div id="moveResult" class="math-result math-result-inline"></div>
+</div>
+
+        <div class="point-input-panel">
+            <label> Point value: </label>
+            <input type="text" id="pointInput" placeholder="e.g. 0.25 or -3.5">
+            <button id="addPointBtn"> Add Point </button>
+        </div>
+
+<div id="divisionDisplay" class="division-label">Scale Division: 1</div>
+<canvas id="microscope"></canvas>
 
         <div id="controls">
-            <strong>📊 Исследование координат Настеньки:</strong>
+            <strong>📊 Exploring Coordinates</strong>
             <table id="pointsTable">
                 <thead>
                     <tr>
-                        <th>Точка</th>
-                        <th>Координата (x)</th>
-                        <th>Цвет</th>
+                        <th>Point</th>
+                        <th>Color</th>
+                        <th>Coordinate (x)</th>
+                        <th>Segment Length</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -65,191 +251,630 @@
         </div>
     </div>
 </div>
+<button id="clearPointsBtn" class="clear-btn"> Clear All Points</button>
 
-
+<div class="olisoft-footer">2026 © OliSoft - YarnTale Math Playground. All rights reserved.</div>
 
 
 <script>
-    // Сюда вставляем весь код из последнего gemini_line.html
-    // (функции init, draw, drawLines, обработчики кликов и колесика)
-    
-    const canvas = document.getElementById('microscope');
-    const ctx = canvas.getContext('2d');
-    const tableBody = document.querySelector('#pointsTable tbody');
-    const distanceDisplay = document.getElementById('distanceDisplay');
+const canvas = document.getElementById('microscope');
+const ctx = canvas.getContext('2d');
+const tableBody = document.querySelector('#pointsTable tbody');
+const distanceDisplay = document.getElementById('distanceDisplay');
+const clearBtn = document.getElementById('clearPointsBtn');
+const AXIS_ZONE = 15;
+const pointInput = document.getElementById('pointInput');
+const addPointBtn = document.getElementById('addPointBtn');
+const pointColors = ["red","blue","green","orange","purple","brown","deeppink","darkcyan","olive","navy"];
+const pointNames = "ABCDEFGHIJ".split("");
+const divisionDisplay =    document.getElementById('divisionDisplay');
+const moveResult =    document.getElementById('moveResult');
+const startInput =    document.getElementById('startInput');
+const deltaInput =    document.getElementById('deltaInput');
+const runBtn =    document.getElementById('runBtn');
 
-    let width, height;
-    let zoom; 
-    let offset = { x: 0, y: 0 };
-    let isDragging = false;
-    let lastMouseX = 0;
-    
-    // Массив для хранения точек
-    let points = [];
-    const pointColors = ["red", "blue", "green", "orange", "purple", "brown", "deeppink", "darkcyan", "olive", "navy"];
-    const pointNames = "ABCDEFGHIJ".split("");
 
-    function init1() {
-        width = canvas.width = window.innerWidth * 0.95; 
-        height = canvas.height = 200; 
-        zoom = width / 11; 
-        offset.x = width / 2;
-        offset.y = height / 2;
-        draw();
+
+
+let width, height;
+let zoom;
+let offset = { x: 0, y: 0 };
+let isDragging = false;
+let lastMouseX = 0;
+let points = [];
+let hoverX = null;
+let hoverVisible = false;
+let moveArrow = null;
+
+
+
+
+
+/* ---------- INIT ---------- */
+function init() {
+    const container = document.getElementById('microscope-container');
+    width = canvas.width = container.clientWidth - 40;
+    height = canvas.height = 250;
+    zoom = width / 11;
+    offset.x = width / 2;
+    offset.y = height / 2;
+}
+
+window.addEventListener('resize', init);
+
+/* ---------- AXIS CHECK ---------- */
+function isNearAxis(mouseY) {
+    const axisY = offset.y;
+    return Math.abs(mouseY - axisY)
+        <= AXIS_ZONE;
+}
+
+/* ---------- FORMAT ---------- */
+function getSuperscript(num) {
+    const s = {
+        '0':'⁰','1':'¹','2':'²','3':'³',
+        '4':'⁴','5':'⁵','6':'⁶',
+        '7':'⁷','8':'⁸','9':'⁹',
+        '-':'⁻'
+    };
+    return num.toString()
+        .split('')
+        .map(c => s[c] || c)
+        .join('');
+}
+
+function formatLabel1(num, precision=10) {
+    let absNum = Math.abs(num);
+    if (absNum < 1e-15)
+        return "0";
+    if (absNum < 0.0001 ||
+        absNum >= 10000) {
+        let expParts =
+            num.toExponential(3).split('e');
+        return expParts[0]
+            + '·10'
+            + getSuperscript(
+                parseInt(expParts[1])
+              );
+    }
+    return parseFloat(
+        num.toFixed(precision)
+    ).toString();
+}
+
+
+
+function formatLabel(num, step) {
+
+    let absNum = Math.abs(num);
+
+    if (absNum < 1e-15)
+        return "0";
+
+    /* если деление маленькое —
+       используем научную запись */
+
+    if (step < 0.01) {
+
+        let expParts =
+            num.toExponential(1).split('e');
+
+        let mantissa =
+            parseFloat(expParts[0]).toString();
+
+        return mantissa
+             + '·10'
+             + getSuperscript(
+                   parseInt(expParts[1])
+               );
     }
 
-    function getSuperscript(num) {
-        const superscripts = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
-        return num.toString().split('').map(char => superscripts[char] || char).join('');
-    }
+    /* обычная запись */
 
-    function formatLabel(num, precision = 10) {
-        let absNum = Math.abs(num);
-        if (absNum < 1e-15) return "0";
-        if (absNum < 0.0001 || absNum >= 10000) {
-            let expParts = num.toExponential(3).split('e');
-            return expParts[0] + '·10' + getSuperscript(parseInt(expParts[1]));
+    return parseFloat(
+        num.toFixed(3)
+    ).toString();
+
+}
+
+
+
+/* ---------- DRAW ---------- */
+
+
+function draw(){
+    ctx.clearRect(0,0,width,height);
+    /* Подсветка рабочей зоны */
+    ctx.fillStyle =
+        "rgba(120,175,172,0.08)";
+    ctx.fillRect(
+        0,
+        offset.y - AXIS_ZONE,
+        width,
+        AXIS_ZONE * 2
+    );
+    let stepPower =
+        Math.floor(
+        Math.log10(100 / zoom)
+        );
+    let majorStep = Math.pow(10, stepPower);
+    let minorStep = majorStep / 10;
+    updateDivisionDisplay(majorStep);
+    drawLines(minorStep,false);
+    drawLines(majorStep,true);
+
+    /* Ось */
+    ctx.beginPath();
+    ctx.strokeStyle="#000";
+    ctx.lineWidth=2;
+    ctx.moveTo(0,offset.y);
+    ctx.lineTo(width,offset.y);
+    ctx.stroke();
+    drawPoints();
+    drawArrow();
+    drawHoverCoordinate();
+    requestAnimationFrame(draw);
+}
+
+
+
+
+function drawLines(step, isMajor) {
+    let distanceOnScreen = step * zoom;
+    let showLabelsNow = isMajor && (distanceOnScreen > 50);
+    let startX = Math.floor(-offset.x / (step * zoom)) * step;
+    let endX = Math.ceil((width - offset.x) / (step * zoom)) * step;
+    for (let x=startX; x<=endX; x+=step){
+        let canvasX =
+            x*zoom + offset.x;
+        let isZero = Math.abs(x) < 1e-15;
+        ctx.beginPath();
+        ctx.strokeStyle =
+            isZero ? "#000"
+            : (isMajor ? "#4a6741"
+            : "#cccccc");
+        ctx.lineWidth =
+            isZero ? 4
+            : (isMajor ? 2 : 1);
+        let tickSize =
+            isZero ? 35
+            : (isMajor ? 15 : 8);
+        ctx.moveTo(canvasX, offset.y - tickSize );
+        ctx.lineTo(canvasX, offset.y + tickSize );
+
+        ctx.stroke();
+        if (isZero || showLabelsNow){
+            ctx.fillStyle =
+                isZero ? "#000"
+                : "#4a6741";
+            ctx.font =
+                isZero
+                ? "bold 22px Arial"
+                : "bold 16px Arial";
+            ctx.textAlign="center";
+           ctx.fillText(    formatLabel(x, step),    canvasX,    offset.y - tickSize - 10);
         }
-        return parseFloat(num.toFixed(precision)).toString();
     }
+}
 
-    function drawLines(step, isMajor) {
-        let distanceOnScreen = step * zoom;
-        let showLabelsNow = isMajor && (distanceOnScreen > 50);
-        let startX = Math.floor(-offset.x / (step * zoom)) * step;
-        let endX = Math.ceil((width - offset.x) / (step * zoom)) * step;
+function drawPoints(){
+    points.forEach(p => {
+        let canvasX = p.x * zoom + offset.x;
+        ctx.beginPath();
+        ctx.arc(
+            canvasX,
+            offset.y,
+            6,
+            0,
+            Math.PI * 2
+        );
+        ctx.fillStyle=p.color;
+        ctx.fill();
+        ctx.strokeStyle="white";
+        ctx.lineWidth=2;
+        ctx.stroke();
+        ctx.fillStyle=p.color;
+        ctx.font="bold 14px Arial";
+        ctx.textAlign="center";
+        ctx.fillText(
+            `${p.name} (${formatLabel(p.x,3)})`,
+            canvasX,
+            offset.y + 35
+        );
+    });
+}
 
-        for (let x = startX; x <= endX; x += step) {
-            let canvasX = x * zoom + offset.x;
-            let isZero = Math.abs(x) < 1e-15;
-            
-            ctx.beginPath();
-            ctx.strokeStyle = isZero ? "#000" : (isMajor ? "#4a6741" : "#cccccc");
-            ctx.lineWidth = isZero ? 4 : (isMajor ? 2 : 1);
-            let tickSize = isZero ? 35 : (isMajor ? 15 : 8);
-            ctx.moveTo(canvasX, offset.y - tickSize);
-            ctx.lineTo(canvasX, offset.y + tickSize);
-            ctx.stroke();
-            
-            if (isZero || showLabelsNow) {
-                ctx.fillStyle = isZero ? "#000" : "#4a6741";
-                ctx.font = isZero ? "bold 22px Arial" : "bold 16px Arial";
-                ctx.textAlign = "center";
-                ctx.fillText(formatLabel(x), canvasX, offset.y - tickSize - 10);
-            }
+
+
+
+
+
+function drawArrow() {
+    if (!moveArrow) return;
+    let x1 = moveArrow.from * zoom + offset.x;
+    let x2 = moveArrow.to * zoom + offset.x;
+    let y =  offset.y + 15;
+    let dir = x2 > x1 ? 1 : -1;
+    let color = dir > 0 ? "red" : "blue";
+    /* линия */
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+    ctx.moveTo(x1, y);
+    ctx.lineTo(x2, y);
+    ctx.stroke();
+    /* наконечник */
+    ctx.beginPath();
+    ctx.moveTo(x2, y);
+    ctx.lineTo(x2 - 10*dir, y - 6);
+    ctx.lineTo(x2 - 10*dir, y + 6);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+
+
+
+/* ---------- TABLE ---------- */
+
+
+
+
+function updateTable(){
+    tableBody.innerHTML="";
+    points.forEach((p, i)=>{
+        let segmentText = "—";
+        /* если есть предыдущая точка */
+        if (i > 0){
+            let prev = points[i-1];
+            let dist = Math.abs(p.x - prev.x);
+            segmentText = prev.name + p.name
+                + " = "
+                + formatLabel(dist, 3);
         }
+        let row = `<tr><td style="color:${p.color};font-weight:bold">${p.name}
+        </td><td> <div style="background:${p.color}; width:20px; height:20px; margin:auto; border-radius:50%"></div>
+        </td><td> ${formatLabel(p.x,3)}
+        </td><td> ${segmentText}
+        </td></tr>`;
+        tableBody.innerHTML += row;
+    });
+    /* Старый расчёт расстояния между последними */
+    if(points.length>=2){
+        let p1 =            points[points.length-2];
+        let p2 =            points[points.length-1];
+        let dist =            Math.abs(p1.x-p2.x);
+        distanceDisplay.innerText =
+        `Расстояние ${p1.name}${p2.name}
+         = ${formatLabel(dist,3)}`;
     }
-
-    function drawPoints() {
-        points.forEach(p => {
-            let canvasX = p.x * zoom + offset.x;
-            
-            // Рисуем саму точку (кружок)
-            ctx.beginPath();
-            ctx.arc(canvasX, offset.y, 6, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.fill();
-            ctx.strokeStyle = "white";
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            // Подпись имени и координаты
-            ctx.fillStyle = p.color;
-            ctx.font = "bold 14px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText(`${p.name} (${formatLabel(p.x, 3)})`, canvasX, offset.y + 35);
-        });
+    else {
+        distanceDisplay.innerText="";
     }
+}
 
-    function updateTable() {
-        tableBody.innerHTML = "";
-        points.forEach(p => {
-            let row = `<tr>
-                <td style="color:${p.color}; font-weight:bold">${p.name}</td>
-                <td>${formatLabel(p.x, 3)}</td>
-                <td><div style="background:${p.color}; width:20px; height:20px; margin:auto; border-radius:50%"></div></td>
-            </tr>`;
-            tableBody.innerHTML += row;
-        });
 
-        if (points.length >= 2) {
-            let p1 = points[points.length - 2];
-            let p2 = points[points.length - 1];
-            let dist = Math.abs(p1.x - p2.x);
-            distanceDisplay.innerText = `Расстояние ${p1.name}${p2.name} = ${formatLabel(dist, 3)}`;
-        } else {
-            distanceDisplay.innerText = "";
-        }
+
+
+function updateDivisionDisplay1() {
+    let stepPower =        Math.floor(Math.log10(100 / zoom));
+    let majorStep =        Math.pow(10, stepPower);
+    let zoomValue =        Math.pow(10, -stepPower);
+    divisionDisplay.innerText =
+        "Division value: "
+        + formatLabel(majorStep, 6)
+        + "    Zoom: ×"
+        + formatLabel(zoomValue, 0);
+}
+
+
+
+function updateDivisionDisplay() {
+    let stepPower =        Math.floor(Math.log10(100 / zoom));
+    let majorStep =        Math.pow(10, stepPower);
+    let zoomValue =        Math.pow(10, -stepPower);
+    /* форматируем division правильно */
+    let divisionText;
+    if (majorStep < 0.01) {
+        let expParts = majorStep  .toExponential(1) .split('e');
+        divisionText = parseFloat(expParts[0]) + '·10'
+            + getSuperscript(parseInt(expParts[1]) );
     }
-
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
-        let stepPower = Math.floor(Math.log10(100 / zoom));
-        let majorStep = Math.pow(10, stepPower);
-        let minorStep = majorStep / 10;
-
-        drawLines(minorStep, false);
-        drawLines(majorStep, true);
-        
-        // Ось
-        ctx.beginPath(); ctx.strokeStyle = "#000"; ctx.lineWidth = 2;
-        ctx.moveTo(0, offset.y); ctx.lineTo(width, offset.y); ctx.stroke();
-
-        drawPoints();
-        requestAnimationFrame(draw);
+    else {divisionText =parseFloat( majorStep.toFixed(3));
     }
+    divisionDisplay.innerHTML ="Division value: "+ divisionText  + "   Zoom: ×"
+        + formatZoom(zoomValue);
+}
 
-    canvas.addEventListener('click', e => {
-        if (points.length >= 10) return;
-        
-        // Вычисляем координату клика в "мире" чисел
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const worldX = (mouseX - offset.x) / zoom;
 
-        points.push({
-            x: worldX,
-            name: pointNames[points.length],
-            color: pointColors[points.length]
-        });
+
+
+function formatZoom(z) {
+    if (z >= 10000) {
+        let expParts =
+            z.toExponential(0)
+             .split('e');
+        return expParts[0]
+             + '·10'
+             + getSuperscript(
+                   parseInt(expParts[1])
+               );
+    }
+    return Math.round(z);
+}
+
+
+function updateMicroImage() {
+    let img =  document.getElementById("microImage");
+    if (zoom < 40) { img.src = "images/micro/micro1.jpg"; }
+    else if (zoom < 100) { img.src ="images/micro/micro2.jpg";}
+    else if (zoom < 300) { img.src ="images/micro/micro3.jpg";}
+    else {img.src = "images/micro/micro4.jpg";}
+}
+
+
+
+
+
+function drawHoverCoordinate() {
+    if (!hoverVisible) return;
+    let canvasX = hoverX * zoom + offset.x;
+    let text = formatLabel(hoverX, 6);
+    ctx.font = "bold 14px Arial";
+    ctx.textAlign = "center";
+    /* фон под текстом */
+    let textWidth = ctx.measureText(text).width;
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.fillRect( canvasX - textWidth/2 - 4,
+        offset.y - 28,
+        textWidth + 8,
+        18
+    );
+    /* текст */
+    ctx.fillStyle = "#4a6741";
+    ctx.fillText( text, canvasX, offset.y - 14);
+}
+
+
+function addPointFromInput() {
+    if (points.length >= 10) return;
+    let value = pointInput.value.trim();
+    if (value === "") return;
+    let number = Number(value);
+    if (isNaN(number)) {
+        alert("Invalid number");
+        return;
+    }
+    points.push({x: number, name: pointNames[points.length], color: pointColors[points.length]});
+    updateTable();
+    pointInput.value = "";
+}
+
+
+function runOperation1() {
+    let start = Number(startInput.value);
+    let delta = Number(deltaInput.value);
+    if (isNaN(start) || isNaN(delta))
+        return;
+    let result = start + delta;
+    /* очищаем старые точки */
+    points = [];
+    /* добавляем старт */
+    points.push({ x: start, name: "A", color: "green" });
+    /* добавляем результат */
+    points.push({ x: result, name: "B", color: "red" });
+    updateTable();
+    /* стрелка */
+    moveArrow = { from: start, to: result};
+    updateMoveText(start, delta, result);
+}
+
+function runOperation() {
+    let start = Number(startInput.value);
+    let delta = Number(deltaInput.value);
+    if (isNaN(start) ||
+        isNaN(delta))
+        return;
+    let result =        start + delta;
+    /* очищаем */
+    points = [];
+    hoverVisible = false;
+    /* добавляем точки */
+    points.push({        x: start,
+        name: "A",
+        color: "green"
+    });
+    points.push({
+        x: result,
+        name: "B",
+        color: "red"
+    });
+    updateTable();
+    /* стрелка */
+    moveArrow = {
+        from: start,
+        to: result
+    };
+    updateMoveText(
+        start,
+        delta,
+        result
+    );
+    draw();   // ← ДОБАВИТЬ
+}
+
+
+function updateMoveText1(start, delta, result) {
+let startText = formatLabel(start, 3);
+    let deltaText =formatLabel(Math.abs(delta), 3);
+    let resultText = formatLabel(result, 3);
+    if (delta >= 0) {
+        moveResult.innerText =
+            "(" + startText + ") + "
+            + deltaText
+            + " = "
+            + resultText;
+    } else {
+        moveResult.innerText =
+            "(" + startText + ") + (-"
+            + deltaText
+            + ") = "
+            + resultText;
+    }
+}
+
+
+function updateMoveText(start, delta, result) {
+let startText =        formatLabel(start, 3);
+    let deltaText =        formatLabel(delta, 3);
+    let resultText =        formatLabel(result, 3);
+    let signColor =        delta >= 0 ? "red" : "blue";
+    moveResult.innerHTML =
+        "(" + startText + ") + "
+        + "<span style='color:"
+        + signColor
+        + "; font-weight:bold;'>"
+        + "(" + deltaText + ")"
+        + "</span>"
+        + " = "
+        + resultText;
+}
+
+
+/*=========Event Listeners===============*/
+
+/* ---------- CLICK ---------- */
+canvas.addEventListener('click', e => {
+    const rect =
+        canvas.getBoundingClientRect();
+    const mouseX =
+        e.clientX - rect.left;
+    const mouseY =
+        e.clientY - rect.top;
+    /* SHIFT → удалить */
+    if (e.shiftKey){
+        points.pop();
         updateTable();
-    });
-
-    window.addEventListener('wheel', e => {
-        e.preventDefault();
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
-        const worldX = (mouseX - offset.x) / zoom;
-        zoom *= zoomFactor;
-        offset.x = mouseX - worldX * zoom;
-    }, { passive: false });
-
-    window.addEventListener('mousedown', e => { isDragging = true; lastMouseX = e.clientX; });
-    window.addEventListener('mousemove', e => {
-        if (isDragging) {
-            offset.x += e.clientX - lastMouseX;
-            lastMouseX = e.clientX;
-        }
-    });
-    window.addEventListener('mouseup', () => isDragging = false);
-    window.addEventListener('resize', init);
-
-    init();
-
-
-
-    // Важное уточнение для шаблона:
-    function init() {
-        const container = document.getElementById('microscope-container');
-        width = canvas.width = container.clientWidth - 40; // Адаптивно под ваш main-frame
-        height = canvas.height = 250; 
-        zoom = width / 11; 
-        offset.x = width / 2;
-        offset.y = height / 2;
-        draw();
+        return;
     }
-    // ... остальной код ...
+    if (points.length >= 10)
+        return;
+    if (!isNearAxis(mouseY))
+        return;
+    const worldX =
+        (mouseX - offset.x)/zoom;
+    points.push({
+        x: worldX,
+        name:
+        pointNames[points.length],
+        color:
+        pointColors[points.length]
+    });
+    updateTable();
+});
+
+
+/* ---------- DRAG ---------- */
+
+canvas.addEventListener('mousedown', e => {
+    const rect =
+        canvas.getBoundingClientRect();
+    const mouseY =
+        e.clientY - rect.top;
+    if (!isNearAxis(mouseY)){
+        isDragging=true;
+        lastMouseX=e.clientX;
+    }
+});
+
+window.addEventListener('mousemove', e => {
+    if (isDragging){
+        offset.x +=
+            e.clientX - lastMouseX;
+        lastMouseX=e.clientX;
+    }
+});
+
+window.addEventListener('mouseup',
+    ()=> isDragging=false);
+
+
+
+/* ---------- CURSOR ---------- */
+canvas.addEventListener('mousemove', e => {
+    const rect =
+        canvas.getBoundingClientRect();
+    const mouseX =
+        e.clientX - rect.left;
+    const mouseY =
+        e.clientY - rect.top;
+
+    /* ---------- DRAG ---------- */
+    if (isDragging) {
+        canvas.style.cursor = "grabbing";
+        offset.x +=
+            e.clientX - lastMouseX;
+        lastMouseX = e.clientX;
+        hoverVisible = false;
+        return;
+    }
+    /* ---------- HOVER ---------- */
+    if (isNearAxis(mouseY)) {
+        canvas.style.cursor = "crosshair";
+        hoverVisible = true;
+        hoverX =
+            (mouseX - offset.x) / zoom;
+    }
+    else {
+        canvas.style.cursor = "grab";
+        hoverVisible = false;
+    }
+});
+
+
+
+/* ---------- ZOOM ---------- */
+canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    const rect =
+        canvas.getBoundingClientRect();
+    const mouseX =
+        e.clientX - rect.left;
+    const zoomFactor =
+        e.deltaY < 0 ? 1.1 : 0.9;
+    const worldX =
+        (mouseX - offset.x)/zoom;
+    zoom *= zoomFactor;
+    offset.x =
+        mouseX - worldX * zoom;
+},{ passive:false });
+
+
+/* ---------- CLEAR BUTTON ---------- */
+clearBtn.addEventListener('click', () => { points=[]; updateTable();});
+addPointBtn.addEventListener( 'click', addPointFromInput);
+pointInput.addEventListener( 'keydown',e => {if (e.key === "Enter") {addPointFromInput();}});
+runBtn.addEventListener( 'click', runOperation);
+
+
+
+clearBtn.addEventListener('click', () => {
+    points = [];
+    moveArrow = null;
+    hoverVisible = false;
+    moveResult.innerHTML = "";
+    updateTable();
+});
+
+
+
+
+
+
+/* ---------- START ---------- */
+init();
+draw();
+
 </script>
 </body>
 </html>
