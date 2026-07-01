@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<!--<html lang="ru">-->
 <html lang="en-GB">
+<!--
+<html lang="ru">
+<html lang="de">
+-->
 <head>
 <meta charset="UTF-8">
-<title>YT Maths Playground  © OliSoft 2026 </title>
+<title>Studio YarnTale — The School of Mathematics © OliSoft 2026</title>
+<title>Studio YarnTale — Школа математики © OliSoft 2026</title>
+<title>Studio YarnTale — Mathematische Spielwiese © OliSoft 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The School of Mathematics, Interactive mathematical playground: calculator, function grapher, geometry tools.">
+<meta name="author" content="OliSoft">
+<link rel="stylesheet" href="math.css">
+<link rel="icon" type="image/png" href="images/ytmath_icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Interactive mathematical playground: calculator, function grapher, geometry tools.">
 <meta name="author" content="OliSoft">
@@ -60,24 +70,23 @@
 
 }
 .group-title {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     color: #6da8a4;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 .link-button {
     display: block;
     margin: 5px auto;
-    padding: 5px 18px;
+    padding: 3px 10px;
     width: 170px;
     background: #ffffff;
     border: 1px solid #c7dede;
-    border-radius: 12px;
+    border-radius: 8px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     color: #4b2a91;
     color: #669999;
-
     transition: all 0.2s ease;
 }
 .link-button:hover {
@@ -89,68 +98,93 @@
 </style>
 </head>
 <body>
+<div class="header-wrapper">
 
-<!-- ===== NAV MENU ===== -->
-<div class="link-grouph">
-<a class="link-buttonh" href="https://studioyarntale.github.io/yt/" target="_blank">🏡YarnTale</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/" target="_blank">🧮Math Playground</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/" target="_blank">📖Story Time</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/storytime/mathmap_en.html" target="_blank">🎓Math School</a>
-<a class="link-buttonh" href="https://studioyarntale.github.io/math1/quiz/" target="_blank">❓Questions and Quizzes</a>
+<!-- ===== Lang buttons ===== -->
+<div class="lang-switch">
+<a class="lang-btn" href="index.html">EN</a>
+<a class="lang-btn" href="index.html">RU</a>
+<a class="lang-btn" href="index.html">DE</a>
 </div>
-<br/>
+<!-- ===== HEADER ===== -->
+<div class="main-title">
+<a href="https://studioyarntale.github.io/math1/ind.html" target="_blank"><img src="images/ytmath_logo.png"></a>
+Studio YarnTale - The School of Mathematics 🎓
+<!--
+Studio YarnTale — Школа математики 🎓
+Studio YarnTale — Mathematische Spielwiese 🎓
+-->
+</div>
+</div>
 
-
-<div class="title"><img src="images/ytmath_logo.png" style="width:90px; margin-bottom:-20px; margin-left:-30px; margin-right:-5px;"/>YarnTale Math Playground</div>
 <div class="main-wrapper">
-
 <div class="container links-panel">
 
 
-<!-- Storytime -->
+<!-- Home & Storytime -->
 <div class="link-group">
+<div class="group-title">📖 Home</div>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/index.html" target="_blank">Home</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/main_en.html" target="_blank">Home page</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/about_en.html" target="_blank">About Me & Yarntale</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/insight_en.html" target="_blank">Maths Insight</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/playground_en.html" target="_blank">Maths Playground</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/parent_en.html" target="_blank">Entry for Parents</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/child_en.html" target="_blank">For Kids Only</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/mathmap_en.html" target="_blank">Mathematical Map</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/dictionary.html" target="_blank">Maths Dictionary</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/home/contact_en.html" target="_blank">Contact Us</a>
+
 <div class="group-title">📖 Storytime</div>
-<a class="link-button" href="storytime/index.html" target="_blank">Math Story</a>
-<a class="link-button" href="storytime/people_en.html" target="_blank">YarnTale World</a>
-<a class="link-button" href="storytime/mathmap_en.html" target="_blank">Mathematical Map</a>
-<a class="link-button" href="storytime/dictionary.html" target="_blank">Dictionary</a>
-<a class="link-button" href="storytime/formulae.html" target="_blank">Formulae</a>
-<a class="link-button" href="storytime/math_en.html" target="_blank">About Mathematics</a>
-<a class="link-button" href="storytime/01_en.html" target="_blank">Zero 🌹 One</a>
-<a class="link-button" href="storytime/whole_en.html" target="_blank">Kingdom of Numbers</a>
-<a class="link-button" href="storytime/fraction_en.html" target="_blank">Fraction Debate</a>
-<a class="link-button" href="storytime/number_ru.html" target="_blank">What is Number?</a>
-<a class="link-button" href="storytime/pi_ru.html" target="_blank">More Numbers</a>
-<a class="link-button" href="storytime/write_ru.html" target="_blank">History of Numbers</a>
-<a class="link-button" href="storytime/count1_ru.html" target="_blank">The Laws of the Number Kingdom</a>
-<a class="link-button" href="storytime/contact_en.html" target="_blank">Contact Us</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/index.html" target="_blank">Math Story</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/people_en.html" target="_blank">YarnTale World</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/math_en.html" target="_blank">About Mathematics</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/01_en.html" target="_blank">Zero 🌹 One</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/whole_en.html" target="_blank">Kingdom of Numbers</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/fraction_en.html" target="_blank">Fraction Debate</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/number_ru.html" target="_blank">What is Number?</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/pi_ru.html" target="_blank">More Numbers</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/write_ru.html" target="_blank">History of Numbers</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/count1_ru.html" target="_blank">The Laws of the Numbers</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/storytime/contact_en.html" target="_blank">Contact Us</a>
+
+
 </div>
 
 
 <!-- Math tools -->
 <div class="link-group">
 <div class="group-title">🧮 Math Tools</div>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/index.html" target="_blank">🧮 Math Tools</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/formulae.html" target="_blank">🧮 Formulae</a>
 
-<a class="link-button" href="tools/calculator.html" target="_blank">➕ Calculator</a>
-<a class="link-button" href="tools/kidscalc.html" target="_blank">🧸 Kids Calculator</a>
-<a class="link-button" href="tools/abacus.html" target="_blank">🧮 Abacus</a>
-<a class="link-button" href="tools/scales.html" target="_blank">🍎 Fruit Scales</a>
-<a class="link-button" href="tools/equation.html" target="_blank">📐 Equation</a>
-<a class="link-button" href="tools/function.html" target="_blank">📈 Function</a>
-<a class="link-button" href="tools/graph.html" target="_blank">📊 Grapher</a>
-<a class="link-button" href="tools/canvas.html" target="_blank">🎨 Canvas</a>
-<a class="link-button" href="tools/analytic.html" target="_blank"> 📈Function Analysis</a>
-<a class="link-button" href="tools/math_micro.html" target="_blank">🔍 Math Microscope</a>
-<a class="link-button" href="quiz/match.html" target="_blank">🧩 Match Quiz</a>
-<a class="link-button" href="quiz/card.html" target="_blank">Card</a>
-<a class="link-button" href="quiz/quiz.html" target="_blank">❓ Quiz</a>
-<a class="link-button" href="quiz/slider.html" target="_blank">🖼 Picture Slider</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/calculator.html" target="_blank">➕ Calculator</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/kidscalc.html" target="_blank">🧸 Kids Calculator</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/abacus.html" target="_blank">🧮 Abacus</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/scales.html" target="_blank">🍎 Fruit Scales</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/equation.html" target="_blank">📐 Equation</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/function.html" target="_blank">📈 Function</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/graph.html" target="_blank">📊 Grapher</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/canvas.html" target="_blank">🎨 Canvas</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/analytic.html" target="_blank"> 📈Function Analysis</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/tools/math_micro.html" target="_blank">🔍 Math Microscope</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/quiz/match.html" target="_blank">🧩 Match Quiz</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/quiz/quiz.html" target="_blank">❓ Quiz</a>
+
+<div class="group-title">🗂 Math Cards</div>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/index.html" target="_blank">🧮 Math Cards</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/formulae.html" target="_blank">Card 1</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/card1_equasion.html"target="_blank">Card 2</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/card2_inequality.html" target="_blank">Card 3</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/card51_trig_unitcircle.html" target="_blank">Card 4</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/card52_trig_values.html" target="_blank">Card 5</a>
+<a class="link-button" href="https://studioyarntale.github.io/math/cards/card53_trig_reductionF.html" target="_blank">Card 6</a>
+
 </div>
-
 <!-- YarnTale -->
 <div class="link-group">
-<div class="group-title">Yarntale</div>
-<a class="link-button" href="https://StudioYarnTale.github.io/yt/" target="_blank">YarnTale</a>
+<div class="group-title">🏡 Yarntale</div>
+<a class="link-button" hr ef="https://StudioYarnTale.github.io/yt/" target="_blank">YarnTale</a>
 <a class="link-button" href="https://studioyarntale.github.io/yt/tales_en.html" target="_blank">Tales</a>
 <a class="link-button" href="https://studioyarntale.github.io/yt/gallery_en.html" target="_blank">Characters</a>
 <a class="link-button" href="https://studioyarntale.github.io/yt/peep_en.html" target="_blank">Peep's Adventure</a>
@@ -164,25 +198,33 @@
 <a class="link-button" href="https://studioyarntale.github.io/yt/crime_en.html" target="_blank">Detective Story</a>
 <a class="link-button" href="https://studioyarntale.github.io/yt/crow_en.html" target="_blank">Fateful Discovery</a>
 <a class="link-button" href="https://studioyarntale.github.io/yt/trip_ru.html" target="_blank">Journey Through Time</a>
+<div class="group-title">🧶 Crochet</div>
+<a class="link-button" href="https://studioyarntale.github.io/yt/school_en.html" target="_blank">Crochet School</a>
+<a class="link-button" href="https://studioyarntale.github.io/yt/mk_en.html" target="_blank">Master-Class</a>
+<a class="link-button" href="https://studioyarntale.github.io/crochet/" target="_blank">Crochet</a>
+<a class="link-button" href="https://studioyarntale.github.io/crochet/symbols.html" target="_blank">Crochet Symbols</a>
+<a class="link-button" href="https://studioyarntale.github.io/crochet/terms.html" target="_blank">Multilingual Terms</a>
+<a class="link-button" href="https://studioyarntale.github.io/crochet/glossary.html" target="_blank">Crochet Glossary</a>
 </div>
 
 <!-- Crochet -->
 <div class="link-group">
-<div class="group-title">Crochet</div>
-<a class="link-button" href="https://studioyarntale.github.io/yt/school_en.html" target="_blank">Crochet School</a>
-<a class="link-button" href="https://studioyarntale.github.io/yt/mk_en.html" target="_blank">Master-Class</a>
-<a class="link-button" href="https://studioyarntale.github.io/crochet/" target="_blank">Crochet</a>
+<h2>⚙ Admin Tools</h2>
+<a class="link-button" href="https://studioyarntale.github.io/math1/index.html">Links</a>
+<a class="link-button" href="https://studioyarntale.github.io/math1/temp2.html">Template</a>
+<a class="link-button" href="https://github.com/dashboard" target="_blank">🐙 GitHub Dashboard</a>
+<a class="link-button" href="https://yarntale.my1.ru/panel/?a=fm" target="_blank">📁 uCoz File Manager</a>
+<a class="link-button" href="https://yarntale.my1.ru/panel/?a=tmpl&m=2&t=0" target="_blank">🧾 uCoz HTML Editor</a>
+<a class="link-button" href="https://editor.wix.com/" target="_blank">🧱 Wix Editor</a>
+<a class="link-button" href="http://127.0.0.1:5500/math1" target="_blank">⚙️Local Host IP</a>
+<a class="link-button" href="http://localhost:5500/math1" target="_blank">Local Host</a>
+<a class="link-button" href="https://studioyarntale.github.io/math1/powershell.html" target="_blank">Powershell</a>
 <h2>🌍 Main Sites</h2>
 <a class="link-button" href="https://yarntale.wixsite.com/home" target="_blank">🧱 YarnTale Wix</a>
 <a class="link-button" href="https://yarntale.my1.ru/index.html" target="_blank">🌐 YarnTale uCoz</a>
 <a class="link-button" href="https://yarntale.my1.ru/crochet/index.html" target="_blank">🧶 Crochet uCoz</a>
 <a class="link-button" href="https://yarntale.my1.ru/math1/index.html" target="_blank">🧮 Math uCoz</a>
-<h2>⚙ Admin Tools</h2>
-<a class="link-button" href="https://github.com/dashboard" target="_blank">🐙 GitHub Dashboard</a>
-<a class="link-button" href="https://yarntale.my1.ru/panel/?a=fm" target="_blank">📁 uCoz File Manager</a>
-<a class="link-button" href="https://yarntale.my1.ru/panel/?a=tmpl&m=2&t=0" target="_blank">🧾 uCoz HTML Editor</a>
-<a class="link-button" href="https://editor.wix.com/" target="_blank">🧱 Wix Editor</a>
-<a class="link-button" href="https://studioyarntale.github.io/math1/powershell.html" target="_blank">Powershell</a>
+
 </div>
 
 
@@ -190,7 +232,22 @@
 </div><!-- main-wrapper -->
 
 
-<div class="olisoft-footer">2026 © OliSoft - YarnTale Math Playground. All rights reserved.</div>
+<!-- ===FOOTER=== -->
+<div class="olisoft-footer" style="margin:10px;">
+    2026 © OliSoft | Studio YarnTale — The School of Mathematics  - All rights reserved.<br/>
+    2026 © OliSoft | Studio YarnTale — Mathematische Spielwiese – Alle Rechte vorbehalten.<br/>
+    2026 © OliSoft | Studio YarnTale — Школа математики — Все права защищены.<br/>
+</div>
+<div class="social-links">
+<a href="https://www.facebook.com/yarntale.math/" target="_blank"><img src="images/icons/facebook.jpg" alt="Facebook"></a>
+<a href="https://www.youtube.com/@YarnTaleStudio-v1o" target="_blank"><img src="images/icons/youtube.jpg" alt="YouTube"></a>
+<a href="https://www.instagram.com/sophieowlcrochet/" target="_blank"><img src="images/icons/instagram.jpg" alt="Instagram"></a>
+<a href="https://uk.pinterest.com/yarntale_crochet/yarntale/" target="_blank"><img src="images/icons/pinterest.jpg" alt="Pinterest"></a>
 
+<a href="https://vk.com/yarntalemath" target="_blank"><img src="images/icons/vk.jpg" alt="VK"></a>
+<a href="https://ok.ru/group/70000041335822" target="_blank"><img src="images/icons/ok.jpg" alt="Одноклассники"></a>
+<a href="https://www.facebook.com/yarntalemath.ru/" target="_blank"><img src="images/icons/rutube.jpg" alt="RuTube"></a>
+<a href="https://t.me/StudioYarntale" target="_blank"><img src="images/icons/telegram.jpg" alt="Telegram"></a>
+</div><!-- ===FOOTER=== -->
 </body>
 </html>

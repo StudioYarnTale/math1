@@ -11,13 +11,15 @@ background:#f9fdfd;
 font-family: "Comic Sans MS", Cambria, Arial, sans-serif, cursive;
 }
 
+.header-wrapper{    position:relative;    width:1000px;    margin:0 auto;}
+
 /* ===== HEADER ===== */
 .main-title{
 display:flex;
 align-items:center;
 justify-content:center;
 gap:0px;
-font-size:34px;
+font-size:28px;
 font-weight:bold;
 color:#78AFAC;
 margin-top:10px;
@@ -152,6 +154,46 @@ font-style: italic;
 
 
 
+/* ===== Rus, Eng, De  MENU ===== */
+
+.lang-switch {
+	position: absolute;
+	top: 5px;
+	right: 20px;
+	font-size: 10px;   /* можно 14–18, под кружево */
+}
+.lang-switch{
+    position:absolute;
+    top:12px;
+    right:18px;
+    display:flex;
+    gap:6px;
+    z-index:100;
+}
+
+.lang-btn{
+    display:inline-block;
+    min-width:28px;
+    padding:3px 3px;
+    text-align:center;
+    text-decoration:none;
+    font-family:"Comic Sans MS";
+    font-size:12px;
+    font-weight:bold;
+    color:#5a8d8a;
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(120,175,172,.45);
+    border-radius:8px;
+    transition:all .25s ease;
+}
+
+.lang-btn:hover{
+    background:rgba(255,255,255,.70);
+    border-color:#78AFAC;
+    color:#2d5f5d;
+    transform:translateY(-1px);
+}
+
 /* ===== TOP HORIZONTAL MENU ===== */
 .link-grouph{
 display:flex;
@@ -159,7 +201,7 @@ width:900px;
 /*flex-wrap:wrap;*/
 justify-content:center;
 align-items:center;
-gap:10px;
+gap:3px;
 margin-top:0px;
 margin-bottom:0px;
 }
@@ -167,12 +209,12 @@ margin-bottom:0px;
 .link-buttonh{
 display:inline-block;
 width:auto;
-padding:5px 15px;
+padding:5px 10px;
 background:#e6f3f2;
 border:1px solid #78AFAC;
 border-radius:22px;
 text-decoration:none;
-font-size:16px;
+font-size:14px;
 color:#338877;
 transition:all 0.2s ease;
 }
@@ -180,14 +222,118 @@ transition:all 0.2s ease;
 /* Hover */
 .link-buttonh:hover{
 background:#d4ecea;
+    background:rgba(255,255,255,.70);
 border-color:#5a8d8a;
 transform:translateY(-2px);
 color:#006633;
 }
 
-.lang-switch {
-	position: absolute;
-	top: 10px;
-	right: 20px;
-	font-size: 10px;   /* можно 14–18, под кружево */
+.social-links{
+    width:900px;
+    margin:-15px auto 0;
+    display:flex;
+    justify-content:flex-end;
+    gap:3px;
+}
+
+.social-links a{
+    display:block;
+    width:25px;
+    height:25px;
+    border-radius:8px;
+    overflow:hidden;
+    opacity:.70;
+    transition:all .25s ease;
+    filter:saturate(.55) brightness(1.03) contrast(.95);
+    box-shadow:0 2px 8px rgba(90,141,138,.12);
+}
+
+.social-links a:hover{
+    opacity:1;
+    transform:translateY(-3px) scale(1.10);
+    filter:none;
+    box-shadow:0 6px 18px rgba(90,141,138,.28);
+}
+
+.social-links img{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+
+
+.about p{  }
+
+.sidebar{
+   width:200px;
+    background:#f8fbfb;
+    border:1px solid #cfdedc;
+    border-radius:8px;
+    padding:10px;
+    box-shadow:0 4px 12px rgba(90,141,138,.10);
+    align-items:flex-start;  
+}
+.sidebar h3{
+    margin:0 0 10px 0;
+    color:#5a8d8a;
+    font-size:14px;
+    text-align:center;
+}
+.sidebar a{
+    display:block;
+    padding:5px;
+    margin:3px 0;
+    text-decoration:none;
+    color:#2d5f5d;
+    border-radius:8px;
+    transition:.2s;
+}
+
+.sidebar a:hover{
+    background:#e6f3f2;
+    transform:translateX(5px);
+}
+
+
+.links-panel {
+    max-width: 200px;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items:flex-start;  
+}
+.link-group {
+    margin-bottom: 10px;
+    align-items:flex-start;  
+
+}
+.group-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #6da8a4;
+    margin-bottom: 12px;
+}
+.link-button {
+    display: block;
+    margin: 3px;
+    padding: 5px;
+    width: 190px;
+    background: #ffffff;
+    border: 1px solid #c7dede;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #4b2a91;
+    color: #669999;
+    transition: all 0.2s ease;
+}
+.link-button:hover {
+    background: #e6f3f2;
+    border-color: #6da8a4;
+    transform: scale(1.02);
+    color: #336666;
 }
